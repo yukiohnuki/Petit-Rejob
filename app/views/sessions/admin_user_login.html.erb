@@ -1,0 +1,29 @@
+
+
+<% if admin_user_logged_in? %>
+<h1>社内Admin専用　企業アカウント作成ページ</h1>
+
+<%= link_to "企業アカウント作成画面へ", new_client_path %>
+
+<% else %>
+
+  <h1>社内Admin専用　ログイン</h1>
+
+  <%= form_for @admin_user, :url => {:controller => 'sessions', :action => 'create'} do |f| %>
+
+    <div class="field">
+      <%= f.label :mail %>
+      <%= f.text_field :mail %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+    </div>
+
+    <div class ="actions">
+      <%= f.submit "submit" %>
+    </div>
+
+  <% end %>
+<% end %>

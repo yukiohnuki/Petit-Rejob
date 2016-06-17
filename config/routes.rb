@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  get 'clients/creat'
+
+  root 'static_pages#top'
+  get 'admin_user_login' ,to:'sessions#admin_user_login'
+  post 'sessions_create' ,to:'sessions#create'
+  delete 'admin_user_logout' ,to:'sessions#delete'
+
+  resources:clients
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

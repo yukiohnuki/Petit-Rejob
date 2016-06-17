@@ -1,12 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+  <%= link_to "Top", "/" %>
   <title>PetitRejob</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+
+<% if admin_user_logged_in? %>
+  <%= link_to "ログアウトする", admin_user_logout_path, method: :delete %>
+  <strong> Logged in as "<%#= current_user.email %>"</strong>
+
+<% else %>
+  <%= link_to "Admin用ログインページへ", admin_user_login_path %>
+<% end %>
 
 <%= yield %>
 
