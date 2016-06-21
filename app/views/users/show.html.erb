@@ -1,0 +1,20 @@
+<h1>マイページ</h1>
+  <h3><%= current_user.name %>さんのプロフィール</h3>
+  <%= link_to "プロフィールを編集する", "/users/#{current_user.id}/profile" %>
+
+  <h3>キープ</h3>
+  <%= link_to "キープを見る", "/users/#{current_user.id}/keep_status" %>
+
+  <h3>あなたが応募した件数</h3>
+  <%= current_user.entries.count %>件
+
+  <h3>あなたが応募した案件</h3>
+    <ul class="jobs">
+      <% current_user.entries.each do |entries|  %>
+    <li>
+      案件名:<%= entries.job.title %>
+      <br>
+      企業名:<%= entries.job.client.name %>
+      </br>
+    </li>
+  <% end %>

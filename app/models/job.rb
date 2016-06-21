@@ -10,5 +10,6 @@ class Job < ActiveRecord::Base
   belongs_to :shop
   belongs_to :client
   has_many :entries
+  has_many :keeps
 
 end

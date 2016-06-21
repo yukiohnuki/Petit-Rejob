@@ -5,7 +5,7 @@ class ShopsController < ApplicationController
   end
 
   def create
-    @shop = hop.new(shop_params)
+    @shop = Shop.new(shop_params)
     if @shop.save
       redirect_to new_shop_path
       flash[:success] = "新しい店舗が作成されました"

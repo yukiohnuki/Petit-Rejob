@@ -14,9 +14,15 @@ Rails.application.routes.draw do
   resources:jobs
   resources:client_jobs, only:[:index, :edit]
   resources:entries
+  resources:job_entries, only:[:index]
+
+  get '/users/:id/keep_status', to:'users#keep_status'
+
+  get 'keep_check' , to:'keeps#check'
 
   patch '/client_jobs/:id/edit', to:'client_jobs#update'
-  get 'mypage' , to:'users#mypage'
+  get '/users/:id/profile' , to:'users#profile'
+  patch '/users/:id/edit' , to:'users#update'
 
 
   delete 'client_session_delete' ,to:'client_sessions#delete'

@@ -85,6 +85,10 @@ ActiveRecord::Schema.define(version: 20160618013045) do
     t.datetime "updated_at", null: false
   end
 
+  add_index "keeps", ["job_id"], name: "index_keeps_on_job_id", using: :btree
+  add_index "keeps", ["user_id", "job_id"], name: "index_keeps_on_user_id_and_job_id", unique: true, using: :btree
+  add_index "keeps", ["user_id"], name: "index_keeps_on_user_id", using: :btree
+
   create_table "messages", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "client_id"

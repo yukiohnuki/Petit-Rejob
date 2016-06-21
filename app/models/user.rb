@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   validates :prefecture_id,  presence: true
   validates :city,  presence: true
   has_many :entries
+  has_many :keeps
 
   def authenticate(inputed_value)
     inputed_value == password

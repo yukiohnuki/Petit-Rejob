@@ -1,0 +1,12 @@
+<h1>キープ一覧</h1>
+
+  <h3>キープ中の件数</h3>
+  <%= current_user.keeps.count %>件
+
+  <h3>キープ中の案件</h3>
+    <ul class="keeps">
+      <% current_user.keeps.each do |keeps|  %>
+    <li>
+      <%= link_to keeps.job.title, job_path %>
+    </li>
+  <% end %>

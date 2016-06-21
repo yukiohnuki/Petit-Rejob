@@ -30,4 +30,8 @@ class JobsController < ApplicationController
                                    :salary, :message)
     end
 
+    def user_logged_in?
+    session[:user].present?
+  end
+  
 end

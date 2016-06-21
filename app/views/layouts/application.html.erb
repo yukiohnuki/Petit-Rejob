@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+<link rel="stylesheet" type="text/css" href="https://relax-job.com/assets/user_frontend/pc/application-063a86e9240ad12d9c2ae3111b35e3ef.css">
   <%= link_to "Top", "/" %>
   <title>PetitRejob</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
@@ -10,9 +10,8 @@
 </head>
 <body>
 
-<%= link_to "マイページ", user_path %>
-
 <% if user_logged_in? %>
+  <%= link_to "マイページ", user_path(session[:user]) %>
   <%= link_to "ログアウトする", user_session_delete_path, method: :delete %>
   <strong> Logged in as "<%= current_user.mail %>"</strong>
   

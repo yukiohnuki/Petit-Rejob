@@ -15,10 +15,30 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.params(session[:id])
+    #@user = User.find(params[:id])
   end
-  
+
+  def profile
+  end
+
+  def edit
+    @user = current_user
+  end
+
+  def update
+    begin
+      @user = User.find(params[:id])
+      @user.update(job_update_params)
+      redirect_to user_path(session[:user])
+    rescue => e
+      render :edit
+    end
+  end
+
   def index
+  end
+
+  def keep_status
   end
 
   private
@@ -28,4 +48,17 @@ class UsersController < ApplicationController
                                    :password_confirmation, :prefecture_id, :city)
     end
 
+    def user_logged_in?
+    session[:user].present?
+  end
+
+  def current_user
+    if user_logged_in?
+       User.find(session[:user])
+    end
+  end
+
+  def job_update_params
+      params.require(:user).permit(:name, :name_kana, :mail, :password, :password_confirmation, :prefecture_id, :city)
+  end
 end

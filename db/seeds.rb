@@ -14,11 +14,19 @@ User.create(name:"大貫",
 	    prefecture_id: "1",
 	    city: "東村山市")
 
+User.create(name:"荒巻",
+	    name_kana: "あらまき",
+	    mail: "aramaki@rejob.co.jp",
+	    password: "test",
+	    password_confirmation: "test",
+	    prefecture_id: "2",
+	    city: "東松山市")
+
 AdminUser.create(name: "大貫祐輝",
 	       mail: "ohnuki@rejob.co.jp",
 	       password: "test")
 
-Client.create(name:"大貫",
+Client.create(name:"大貫という企業",
 	     mail:"ohnuki@rejob.co.jp",
 	     password:"test",
 	     password_confirmation: "test")
@@ -35,7 +43,7 @@ Job.create(client_id: "1",
 	   salary: "月給600万円です",
 	   message: "我々とともに頑張ろう！")
 
-Client.create(name:"荒巻",
+Client.create(name:"荒巻という企業",
 	     mail:"aramaki@rejob.co.jp",
 	     password:"test",
 	     password_confirmation: "test")

@@ -2,11 +2,34 @@
 
 <ul class="jobs">
   <% @jobs.each do |job| %>
-    <li>
+  <session class="search-job-box">
+	  <li>
       <%#= gravatar_for shop, size: 50 %>
       案件名: <%= link_to job.title, job %>
       店舗名: <%= job.shop.name %>
       企業名: <%= job.client.name %>
+
+      <div class="search-job-box__header table_row">
+      <div class="cols_8">
+        <span class="search-job-box__header__corp">
+          
+        </span>
+      </div>
+      <div class="cols_4 v_bottom">
+          <span class="ml_1 f_right label__oiwai label__oiwai--10000"></span>
+        <ul class="f_right ul-inline ul-inline--lr1">
+            <li class="label__employment">正</li>
+            <li class="label__employment">ア</li>
+        </ul>
+        <div class="label__search-job-box">
+        </div>
+      </div>
+    </div>
+	
+</session>
+  
     </li>
   <% end %>
 </ul>
+
+

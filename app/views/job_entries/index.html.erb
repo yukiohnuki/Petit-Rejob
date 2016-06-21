@@ -1,0 +1,15 @@
+<h1>応募一覧</h1>
+
+  <h3>応募数</h3>
+  <%# fail %>
+    <% current_client.jobs.each do |jobs| %>
+    <%= jobs.entries.count %>件
+    <% end %>
+
+  <h3>応募状況</h3>
+    <% current_client.jobs.each do |jobs| %>
+    <% jobs.entries.each do |entry| %>
+    応募者:<%= entry.user.name %>
+    応募案件:<%= entry.job.title %>
+    <% end %>
+    <% end %>
