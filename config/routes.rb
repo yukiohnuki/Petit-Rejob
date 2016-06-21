@@ -5,9 +5,27 @@ Rails.application.routes.draw do
   get 'admin_user_login' ,to:'sessions#admin_user_login'
   post 'sessions_create' ,to:'sessions#create'
   delete 'admin_user_logout' ,to:'sessions#delete'
-
+ 
   resources:clients
-  
+  resources:client_sessions
+  resources:users
+  resources:user_sessions
+  resources:shops
+  resources:jobs
+  resources:client_jobs, only:[:index, :edit]
+  resources:entries
+
+  patch '/client_jobs/:id/edit', to:'client_jobs#update'
+  get 'mypage' , to:'users#mypage'
+
+
+  delete 'client_session_delete' ,to:'client_sessions#delete'
+  delete 'user_session_delete' ,to:'user_sessions#delete'
+  get 'admin_top' ,to:'clients#admin_top'
+  get 'shop_index', to:'clients#shop_index'
+  get 'shop_edit/:id', to:'clients#shop_edit'
+  patch 'shop_edit/:id', to:'clients#shop_edit_update'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

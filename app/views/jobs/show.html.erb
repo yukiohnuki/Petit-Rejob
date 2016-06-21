@@ -1,0 +1,24 @@
+<h1> 案件詳細ページ </h1>
+
+<h3>案件名:</h3>
+<%= @job.title %>
+
+<h3>都道府県:</h3>
+<%= @job.prefecture_id %>
+
+<h3>市区町村:</h3>
+<%= @job.city %>
+
+<h3>給与:</h3>
+<%= @job.salary %>
+
+<h3>メッセージ:</h3>
+<%= @job.message %>
+
+<br>
+<%= link_to "応募する", new_entry_path(@job, job_id: @job.id) %>
+</br>
+
+<br>
+<%= link_to "案件一覧ページへ戻る", jobs_path %>
+</br>

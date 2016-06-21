@@ -1,0 +1,65 @@
+<h1>案件作成フォーム</h1>
+
+<%= form_for @job do |f| %>
+
+  <div class = "field">
+   <%= f.label :企業ID %>
+   <%= f.text_field :client_id %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :店舗ID %>
+    <%= f.text_field :shop_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :おすすめポイント %>
+    <%= f.text_field :recommend_point %>
+  </div>
+
+  <div class="field">
+    <%= f.label :案件一覧用の写真 %>
+    <%= f.text_field :search_list_photo %>
+  </div>
+
+  <div class="field">
+    <%= f.label :案件詳細のトップ用の写真 %>
+    <%= f.text_field :top_photo %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :案件名 %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :都道府県 %>
+    <%= f.text_field :prefecture_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :市区町村 %>
+    <%= f.text_field :city %>
+  </div>
+
+  <div class="field">
+    <%= f.label :給与 %>
+    <%= f.text_field :salary %>
+  </div>
+
+  <div class="field">
+    <%= f.label :メッセージ %>
+    <%= f.text_field :message %>
+  </div>
+
+  <div class ="actions">
+  <%= f.submit "submit" %>
+
+<% end %>
+
+<div class="container">
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+      <% end %>
+      <%= yield %>
+</div>

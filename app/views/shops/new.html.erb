@@ -1,0 +1,27 @@
+<h1>店舗作成フォーム</h1>
+
+<%= form_for @shop do |f| %>
+
+  <div class = "field">
+   <%= f.label :企業ID %>
+   <%= f.text_field :client_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :店舗名 %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class ="actions">
+  <%= f.submit "submit" %>
+
+<% end %>
+
+<div class="container">
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+      <% end %>
+      <%= yield %>
+</div>
+
+<%= link_to '店舗一覧へ', shops_path %>

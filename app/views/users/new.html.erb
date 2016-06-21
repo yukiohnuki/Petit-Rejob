@@ -1,0 +1,51 @@
+<h1>会員登録フォーム</h1>
+
+<%= form_for @user do |f| %>
+
+  <div class = "field">
+   <%= f.label :名前 %>
+   <%= f.text_field :name %>
+  </div>
+
+  <div class = "field">
+   <%= f.label :ふりがな %>
+   <%= f.text_field :name_kana %>
+  </div>
+
+
+  <div class="field">
+    <%= f.label :メールアドレス %>
+    <%= f.text_field :mail %>
+  </div>
+
+  <div class="field">
+    <%= f.label :パスワード %>
+    <%= f.password_field :password %>
+  </div>
+
+  <div class="field">
+    <%= f.label :確認用パスワード %>
+    <%= f.password_field :password_confirmation %>
+  </div>
+
+  <div class = "field">
+   <%= f.label :都道府県 %>
+   <%= f.text_field :prefecture_id %>
+  </div>
+
+  <div class = "field">
+   <%= f.label :市区町村 %>
+   <%= f.text_field :city %>
+  </div>
+
+  <div class ="actions">
+    <%= f.submit "submit" %>
+
+ <% end %>
+
+<div class="container">
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+      <% end %>
+      <%= yield %>
+    </div>

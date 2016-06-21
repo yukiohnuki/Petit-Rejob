@@ -1,0 +1,12 @@
+<h1>案件一覧</h1>
+
+<ul class="jobs">
+  <% @jobs.each do |job| %>
+    <li>
+      <%#= gravatar_for shop, size: 50 %>
+      案件名: <%= link_to job.title, job %>
+      店舗名: <%= job.shop.name %>
+      企業名: <%= job.client.name %>
+    </li>
+  <% end %>
+</ul>

@@ -1,0 +1,35 @@
+<h1>エントリーフォーム</h1>
+
+<%= form_for(@user, url: {controller: :entries, action: :create}, html: {method: "post"}) do |f| %>
+
+  <div class = "field">
+   <%= f.label :名前 %>
+   <%= f.text_field :name %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :ふりがな %>
+    <%= f.text_field :name_kana %>
+  </div>
+
+  <div class="field">
+    <%= f.label :メールアドレス %>
+    <%= f.text_field :mail %>
+  </div>
+
+  <div class="field">
+    <%= f.label :都道府県 %>
+    <%= f.text_field :prefecture_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :市区町村 %>
+    <%= f.text_field :city %>
+  </div>
+
+
+  <div class ="actions">
+  <%= f.hidden_field :job, :value => params[:job_id] %>
+  <%= f.submit "submit" %>
+
+<% end %>

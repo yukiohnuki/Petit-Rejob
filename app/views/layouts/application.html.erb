@@ -10,12 +10,33 @@
 </head>
 <body>
 
-<% if admin_user_logged_in? %>
-  <%= link_to "ログアウトする", admin_user_logout_path, method: :delete %>
-  <strong> Logged in as "<%#= current_user.email %>"</strong>
+<%= link_to "マイページ", user_path %>
+
+<% if user_logged_in? %>
+  <%= link_to "ログアウトする", user_session_delete_path, method: :delete %>
+  <strong> Logged in as "<%= current_user.mail %>"</strong>
+  
 
 <% else %>
-  <%= link_to "Admin用ログインページへ", admin_user_login_path %>
+  <%= link_to "会員登録", new_user_path %>
+  <%= link_to "ログイン", new_user_session_path %>
+<% end %>
+
+<% if admin_user_logged_in? %>
+  <%= link_to "ログアウトする(admin)", admin_user_logout_path, method: :delete %>
+  <strong> Logged in as "<%= current_admin_user.mail %>"</strong>
+
+<% else %>
+  <%= link_to "Admin用ログイン", admin_user_login_path %>
+<% end %>
+
+<% if client_logged_in? %>
+  <%= link_to "企業管理画面", admin_top_path %>
+  <%= link_to "ログアウトする(client)", client_session_delete_path, method: :delete %>
+  <strong> Logged in as "<%= current_client.mail %>"</strong>
+
+<% else %>
+  <%= link_to "企業ログイン", new_client_session_path %>
 <% end %>
 
 <%= yield %>

@@ -1,0 +1,10 @@
+<h1>応募一覧</h1>
+
+<ul class="entries">
+  <% @entries.each do |entry| %>
+    <li>
+      応募ID:<%= entry.id %>
+      ユーザー名: <%= entry.user.name %>
+      案件名: <%= entry.job.title %>
+    </li>
+  <% end %>

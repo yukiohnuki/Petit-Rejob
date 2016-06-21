@@ -1,0 +1,9 @@
+<h1>店舗一覧</h1>
+
+  <ul class="clients">
+  <% current_client.shops.each do |shop|  %>
+    <li>
+      <%= link_to shop.name, "/shop_edit/#{shop.id}" %>
+    </li>
+  <% end %>
+

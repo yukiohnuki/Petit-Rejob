@@ -1,0 +1,11 @@
+<h1>店舗一覧</h1>
+
+<ul class="shops">
+  <% @shops.each do |shop| %>
+    <li>
+      <%#= gravatar_for shop, size: 50 %>
+      店舗名: <%= link_to shop.name, shop %>
+      企業ID: <%= shop.client_id %>
+    </li>
+  <% end %>
+</ul>

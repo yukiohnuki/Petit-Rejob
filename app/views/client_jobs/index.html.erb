@@ -1,0 +1,8 @@
+<h1>案件一覧</h1>
+
+  <ul class="jobs">
+  <% current_client.jobs.each do |job|  %>
+    <li>
+      <%= link_to job.title, "/client_jobs/#{job.id}/edit" %>
+    </li>
+  <% end %>

@@ -17,6 +17,33 @@ class ClientsController < ApplicationController
     @client = Client.find(params[:id])
   end
 
+  def admin_top
+  end
+
+  def shop_index
+    # if client_logged_in?
+    #   @shop = current_user.shops.build
+    # end
+    #@client = Client.find(params[:id])
+  end
+
+  def shop_edit
+    if current_client.shops.map {|shop| shop.id}.include?(params[:id].to_i)
+    @shop = Shop.find(params[:id])
+    end
+  end
+
+  def shop_edit_update
+    
+    begin
+      @shop = Shop.find(params[:id])
+      @shop.update(shop_edit_params)
+      redirect_to shop_index_path
+    rescue => e
+      render :shop_edit
+    end
+  end
+
   private
 
     def client_params
@@ -24,7 +51,22 @@ class ClientsController < ApplicationController
                                    :password_confirmation)
     end
 
-  def index
-    @clients = Client.all
-  end
+    def shop_edit_params
+      params.require(:shop).permit(:client_id, :name)
+    end
+
+    def index
+      @clients = Client.all
+    end
+
+    def client_logged_in?
+      session[:client].present?
+    end
+
+    def current_client
+      if client_logged_in?
+         Client.find(session[:client])
+      end
+    end
+
 end
