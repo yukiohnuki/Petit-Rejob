@@ -1,29 +1,37 @@
+<div class="content content--mypage">
+  <div class="content-head">
+    <ul class="breadcrumb--pt1">
+      <li><a href="/">ホーム</a></li>
+      <li><span>社内ログイン</span></li>
+    </ul>
+    <h1 class="heading1-pt1">社内ログイン</h1>
+  </div>
+  <section class="box-pt1 p_50">
+
+       <% if admin_user_logged_in? %>
+
+        <%= link_to "企業アカウント作成画面へ", new_client_path %>
+
+        <% else %>
 
 
-<% if admin_user_logged_in? %>
-<h1>社内Admin専用　企業アカウント作成ページ</h1>
+        <%= form_for @admin_user, :url => {:controller => 'sessions', :action => 'create'} do |f| %>
+        <div class="row row-mg mb_10">
+          <div class="cols_5">
+          <%= f.label :メールアドレス %>
+          <%= f.text_field :mail, class: "w-block" %>
+          </div>
 
-<%= link_to "企業アカウント作成画面へ", new_client_path %>
+          <div class="cols_5">
+            <%= f.label :パスワード %>
+            <%= f.password_field :password, class: "w-block" %>
+          </div>
+          <div class="cols_2">
+            <%= f.submit "ログイン", class: "btn btn--pt2 w-block" %>
+          </div>
+        </div>
 
-<% else %>
-
-  <h1>社内Admin専用　ログイン</h1>
-
-  <%= form_for @admin_user, :url => {:controller => 'sessions', :action => 'create'} do |f| %>
-
-    <div class="field">
-      <%= f.label :mail %>
-      <%= f.text_field :mail %>
-    </div>
-
-    <div class="field">
-      <%= f.label :password %>
-      <%= f.password_field :password %>
-    </div>
-
-    <div class ="actions">
-      <%= f.submit "submit" %>
-    </div>
-
+  </section>
   <% end %>
-<% end %>
+  <% end %>
+</div>

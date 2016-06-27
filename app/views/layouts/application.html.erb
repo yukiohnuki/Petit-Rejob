@@ -1,44 +1,179 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="https://relax-job.com/assets/user_frontend/pc/application-063a86e9240ad12d9c2ae3111b35e3ef.css">
-  <%= link_to "Top", "/" %>
-  <title>PetitRejob</title>
+<link rel="stylesheet" type="text/css" href="https://relax-job.com/assets/user_frontend/pc/application-765ad29b1f81b32813190eac8b604ab4.css">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
 </head>
 <body>
 
-<% if user_logged_in? %>
-  <%= link_to "マイページ", user_path(session[:user]) %>
-  <%= link_to "ログアウトする", user_session_delete_path, method: :delete %>
-  <strong> Logged in as "<%= current_user.mail %>"</strong>
-  
+<header>
+  <div class="header">
 
-<% else %>
-  <%= link_to "会員登録", new_user_path %>
-  <%= link_to "ログイン", new_user_session_path %>
-<% end %>
+    <div class="header-top">
+      <div class="container">
+        <ul class="header-top__navi">
 
-<% if admin_user_logged_in? %>
-  <%= link_to "ログアウトする(admin)", admin_user_logout_path, method: :delete %>
-  <strong> Logged in as "<%= current_admin_user.mail %>"</strong>
+          <% if admin_user_logged_in? %>
+            <li><%= link_to "ログアウト(社内)", admin_user_logout_path, method: :delete %></li>
+            <li><strong> Logged in as "<%= current_admin_user.mail %>"</strong></li>
 
-<% else %>
-  <%= link_to "Admin用ログイン", admin_user_login_path %>
-<% end %>
+          <% else %>
+            <li><%= link_to "社内ログイン", admin_user_login_path %></li>
+          <% end %>
 
-<% if client_logged_in? %>
-  <%= link_to "企業管理画面", admin_top_path %>
-  <%= link_to "ログアウトする(client)", client_session_delete_path, method: :delete %>
-  <strong> Logged in as "<%= current_client.mail %>"</strong>
+          <% if client_logged_in? %>
+            <li><%= link_to "企業様管理画面", admin_top_path %></li>
+            <li><%= link_to "ログアウト(client)", client_session_delete_path, method: :delete %></li>
+            <li><strong> Logged in as "<%= current_client.mail %>"</strong></li>
+          <% else %>
+            <li><%= link_to "企業様ログイン", new_client_session_path %></li>
+          <% end %>
 
-<% else %>
-  <%= link_to "企業ログイン", new_client_session_path %>
-<% end %>
+          <% if user_logged_in? %>
+            <li><%= link_to "マイページ", user_path(session[:user]) %></li>
+            <li><%= link_to "ログアウト", user_session_delete_path, method: :delete %></li>
+            <li><strong> Logged in as "<%= current_user.mail %>"</strong></li>
+          <% else %>
+            <li><%= link_to "会員登録", new_user_path %></li>
+            <li><%= link_to "ログイン", new_user_session_path %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <div class="header-middle container clear">
+    <a class="header-middle__logo" href="/"><img class="logo_header" src="/assets/logo_header.png" alt="Logo header"></a>
 
-<%= yield %>
+    <div class="header-middle__dropdown">
+      <span class="header-middle__dropdown__btn js_dropdown__menu">業種から探す</span>
+    </div>
+
+    <ul class="header-middle__nav">
+      <% if user_logged_in? %>
+        <li><%= link_to "キープ", "/users/#{current_user.id}/keep_status" %><i class="icon-attach"></i></li>
+        <li><%= link_to "応募管理", "/users/#{current_user.id}/entry_status" %><i class="icon-paper-plane"></i></li>
+        <li><a rel="nofollow,leanModal" href=".memberRegistrationModal"><i class="icon-paper-plane"></i>スカウト管理※</a></li>
+        <li><%= link_to "マイページ", user_path(session[:user]) %><i class="icon-paper-plane"></i></li>
+      <% end %>
+      
+    </ul>
+</header>
+
+<div>
+  <%= yield %>
+    <div class="content mt_30">
+    </div>
+</div>
+
+
+
+
+  <footer>
+  <div class="footer">
+    <div class="container">
+      <div class="row row-mg footer--content">
+        <div class="cols_6 f_left">
+          <dl class="footer-nav">
+            <dt><a href="https://staging.relax-job.com/biyo">美容</a></dt>
+            <dd>
+              <ul class="ul-inline ul-inline--col5 ul--p_tb2">
+                <li><a href="https://staging.relax-job.com/esthe">エステ</a></li>
+                <li><a href="https://staging.relax-job.com/nail">ネイル</a></li>
+                <li><a href="https://staging.relax-job.com/eyelist">アイリスト</a></li>
+                <li><a href="https://staging.relax-job.com/biyoshi">美容師</a></li>
+                <li><a href="https://staging.relax-job.com/biyobuin">美容部員</a></li>
+              </ul>
+            </dd>
+
+            <dt><a href="https://staging.relax-job.com/relaxation"> リラクゼーション</a></dt>
+            <dd>
+              <ul class="ul-inline ul-inline--col5 ul-inline--p_tb5">
+                <li><a href="https://staging.relax-job.com/therapist">セラピスト</a></li>
+                <li><a href="https://staging.relax-job.com/massage">マッサージ</a></li>
+                <li><a href="https://staging.relax-job.com/reflexology">リフレ</a></li>
+                <li><a href="https://staging.relax-job.com/aroma">アロマ</a></li>
+                <li><a href="https://staging.relax-job.com/seitai">整体師</a></li>
+                <li><a href="https://staging.relax-job.com/chiropractic">カイロ</a></li>
+              </ul>
+            </dd>
+          </dl>
+          <div class="row row-mg clear">
+            <div class="cols_6">
+              <dl class="footer-nav">
+                <dt><a href="https://staging.relax-job.com/chiryo">治療</a></dt>
+                <dd>
+                  <ul class="ul-inline ul-inline--col3 ul-inline--p_tb5">
+                    <li><a href="https://staging.relax-job.com/jusei">柔道整復師</a></li>
+                    <li><a href="https://staging.relax-job.com/shinkyu">鍼灸師</a></li>
+                    <li><a href="https://staging.relax-job.com/massageshi">マッサージ師</a></li>
+                  </ul>
+                </dd>
+              </dl>
+            </div>
+            <div class="cols_6">
+              <dl class="footer-nav">
+                <dt><a href="https://staging.relax-job.com/sports">スポーツ・フィットネス</a></dt>
+                <dd>
+                  <ul class="ul-inline ul-inline--col3 ul-inline--p_tb5">
+                    <li><a href="https://staging.relax-job.com/yoga">ヨガ</a></li>
+                    <li><a href="https://staging.relax-job.com/fitness">フィットネス</a></li>
+                  </ul>
+                </dd>
+              </dl>
+            </div>
+          </div>
+          <dl class="footer-nav">
+            <dt><a href="https://staging.relax-job.com/kaigo">リジョブ 介護</a></dt>
+            <dd>
+              <ul class="ul-inline ul-inline--col5 ul-inline--p_tb5">
+                <li><a href="https://staging.relax-job.com/kaigo">介護</a></li>
+              </ul>
+            </dd>
+          </dl>
+        </div>
+
+        <div class="cols_3 f_left">
+          <dl class="footer-nav">
+            <dt>企業様メニュー</dt>
+            <dd>
+              <ul class="ul-list-none ul--p_tb2">
+                <li><a href="https://client-staging.relax-job.com/" target="_blank">企業様ログイン</a></li>
+                <li><a href="/lp/new_inquiry" target="_blank">求人掲載について</a></li>
+                <li><a href="/info/corporate_contact" target="_blank">企業様お問い合わせ</a></li>
+              </ul>
+            </dd>
+            <dt>リジョブについて</dt>
+            <dd>
+              <ul class="ul-list-none ul--p_tb2">
+                <li><a href="/info/terms">利用規約</a></li>
+                <li><a href="/info/user_contact">求職者様お問い合わせ</a></li>
+                <li><a href="/lp/user_rewards">お祝い金とは</a></li>
+                <li><a href="/info/faq">よくあるご質問</a></li>
+                <li><a href="/info/privacypolicy">プライバシーポリシー</a></li>
+                <li><a href="/info/law">免責事項･特定商取引</a></li>
+                <li><a href="https://rejob.co.jp/company?utm_medium=rejob&amp;utm_source=relax-job.com" target="_blank">会社概要</a></li>
+                <li><a href="/info/sitemap">サイトマップ</a></li>
+              </ul>
+            </dd>
+          </dl>
+        </div>
+        <div class="cols_3 f_left">
+          <a class="footer--content__bunner" href="/lp/new_inquiry">
+            <img class="" src="/assets/img_footerbunner.png" alt="Img footerbunner">
+          </a>
+        </div>
+      </div>
+      <span class="go-top" id="scroll-top"></span>
+    </div>
+    <div class="copyright">
+      <div class="container t_left">
+        <small>© REJOB Co.,Ltd. All Rights Reserved.</small>
+      </div>
+    </div>
+  </div>
+</footer>
 
 </body>
 </html>

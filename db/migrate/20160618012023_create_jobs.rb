@@ -4,8 +4,6 @@ class CreateJobs < ActiveRecord::Migration
       t.integer :client_id
       t.integer :shop_id
       t.integer :recommend_point
-      t.string :search_list_photo
-      t.string :top_photo
       t.string :title
       t.integer :prefecture_id
       t.string :city

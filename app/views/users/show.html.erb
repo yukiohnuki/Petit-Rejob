@@ -1,20 +1,114 @@
-<h1>マイページ</h1>
-  <h3><%= current_user.name %>さんのプロフィール</h3>
-  <%= link_to "プロフィールを編集する", "/users/#{current_user.id}/profile" %>
+  <div class="content content--mypage">
+    <div class="content-head">
+      <ul class="breadcrumb--pt1">
+        <li><a href="/">リジョブ</a></li><li>マイページ
+        </li>
+      </ul>
+      <h2 class="heading1-pt1">マイページ</h2>
+    </div>
 
-  <h3>キープ</h3>
-  <%= link_to "キープを見る", "/users/#{current_user.id}/keep_status" %>
+    <div class="mypage-side">
+      <div class="mypage-side">
+        <ul class="mypage-navi">
+          <li><%= link_to "マイページ", "/users/#{current_user.id}" %></li>
+          <li><a href="/mypage/job_scouts" false="">スカウト管理※</a></li>
+          <li><%= link_to "キープ", "/users/#{current_user.id}/keep_status" %></li>
+          <li><%= link_to "応募管理", "/users/#{current_user.id}/entry_status" %></li>
+          <li><%= link_to "メッセージ※", "/users/#{current_user.id}/keep_status" %></li>
+          <li><%= link_to "プロフィール", "/users/#{current_user.id}/edit" %></li>
+      </ul>
+    </div>
+  </div>
 
-  <h3>あなたが応募した件数</h3>
-  <%= current_user.entries.count %>件
+  <div class="mypage-main">
+      <h2 class="heading2-mypage">マイページトップ</h2>
+<section>
 
-  <h3>あなたが応募した案件</h3>
+  <div class="row row-mg mb_30">
+    <div class="cols_4">
+      <div class="mypage-info">
+        <h3 class="mypage-info__title">応募履歴</h3>
+          <div class="mypage-info__circle">
+            <span class="mypage-info__circle__count">
+              <%= current_user.entries.count %>
+                <span class="txt_size_12">件
+                </span>
+            </span>
+            <p class="txt_size_10">
+            </p>
+          </div>
+          <p class="mypage-info__footer"></p>
+      </div>
+    </div>
+    
+    <div class="cols_4">
+      <div class="mypage-info">
+        <h3 class="mypage-info__title"><i class="icon-attach"></i>キープ中の案件</h3>
+        <div class="mypage-info__circle">
+          <span class="mypage-info__circle__count">
+            <%= current_user.keeps.count %>
+              <span class="txt_size_12">件
+              </span>
+          </span>
+          <p class="txt_size_10">
+            <% if current_user.keeps.present? %>
+              キープ中の案件があります。
+            <% end %>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cols_4">
+      <div class="mypage-info">
+        <h3 class="mypage-info__title"><i class="icon-paper-plane"></i> スカウト※</h3>
+        <div class="mypage-info__circle">
+          <span class="mypage-info__circle__count">0<span class="txt_size_12">件</span></span>
+            <p class="txt_size_10">
+              <% if current_user.scouts.present? %>
+                スカウトが届いています。
+              <% end %>
+            </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<h3 class="heading3-mypage">お知らせ
+      <span class="heading3-mypage__sub"><a href="https://relax-job.com/mypage/news">過去一覧はこちら</a></span>
+    </h3>
+    <div class="p_15">
+      <dl class="list-dl-pt3 list-dl-pt3--bdb list-dl-pt3--dt9em txt_size_12">
+          <dt>2016年04月07日</dt>
+            <dd><a href="https://relax-job.com/mypage/news/14">システム障害のお知らせ</a></dd>
+          <dt>2016年02月15日</dt>
+            <dd><a href="https://relax-job.com/mypage/news/10">サイトメンテナンスのお知らせ</a></dd>
+          <dt>2016年02月08日</dt>
+            <dd><a href="https://relax-job.com/mypage/news/9">美容師の職歴を登録されている皆様へお願い</a></dd>
+          <dt>2015年12月06日</dt>
+            <dd><a href="https://relax-job.com/mypage/news/2">求人サイトリジョブ　リニューアルのお知らせ</a></dd>
+      </dl>
+    </div>
+
+  <div class="m_10 w-block--img">
+    <a href="https://relax-job.com/lp/expo201607" class="crrent" target="_blank">
+      <img class="" alt="就職応援EXPO" src="/assets/seminar-expo2016.png">
+    </a>
+  </div>
+
+</div>
+</div>
+
+
+
+
+
+
+
     <ul class="jobs">
       <% current_user.entries.each do |entries|  %>
-    <li>
-      案件名:<%= entries.job.title %>
-      <br>
-      企業名:<%= entries.job.client.name %>
-      </br>
-    </li>
-  <% end %>
+      <%= link_to "メッセージ" , new_message_path(user_id: params[:id],
+                              client_id: entries.job.client.id, entry_id: entries.id) %>
+
+      <% end %>

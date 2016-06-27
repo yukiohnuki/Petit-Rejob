@@ -11,14 +11,21 @@ Rails.application.routes.draw do
   resources:users
   resources:user_sessions
   resources:shops
-  resources:jobs
+  resources:jobs do
+    collection do
+      get 'search', to:'jobs#search'
+    end
+  end
   resources:client_jobs, only:[:index, :edit]
   resources:entries
   resources:job_entries, only:[:index]
+  resources:messages
 
   get '/users/:id/keep_status', to:'users#keep_status'
+  get '/users/:id/entry_status', to:'users#entry_status'
 
   get 'keep_check' , to:'keeps#check'
+  get 'keep_check_at_index', to:'keeps#check_at_index'
 
   patch '/client_jobs/:id/edit', to:'client_jobs#update'
   get '/users/:id/profile' , to:'users#profile'
@@ -32,6 +39,7 @@ Rails.application.routes.draw do
   get 'shop_edit/:id', to:'clients#shop_edit'
   patch 'shop_edit/:id', to:'clients#shop_edit_update'
 
+#  post '/jobs/search', to:'jobs#search'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,32 +1,70 @@
-<h1> 案件詳細ページ </h1>
+  <div class="content" data-job-source="false">
+  	<div class="content-head">
+  	  <ul class="breadcrumb--pt1">
+  	    <li><a href="/">リジョブ</a></li><li><a href="/jobs">求人案件一覧</a></li><li><%= @job.client.name %>の求人</a>
+  		</li>
+  	  </ul>
+  	</div>
 
-<h3>案件名:</h3>
-<%= @job.title %>
+  	<div class="heading1-pt1">
+  	  <h1 class="heading1-pt1__sub"><%= @job.client.name %>の求人｜求人募集</h1>
+  	  <h2><%= @job.title %></h2>
+	</div>
 
-<h3>都道府県:</h3>
-<%= @job.prefecture_id %>
+	  <section class="job-data">
+        <div class="job-data__main">
+ 		  <%= image_tag(@job.top_photo) %>
 
-<h3>市区町村:</h3>
-<%= @job.city %>
+ 		    <section>
+        	  <table class="table table-set--jobdata">
+          		<colgroup>
+            	  <col style="width: 140px;">
+          		</colgroup>
 
-<h3>給与:</h3>
-<%= @job.salary %>
+          	    <tbody>
+                <tr>
+                  <th>給与</th>
+                    <td>
+                      <%= @job.salary %>
+                    </td>
+                </tr>
 
-<h3>メッセージ:</h3>
-<%= @job.message %>
+                <tr>
+                  <th>勤務地</th>
+                    <td>
+                      <%= @job.prefecture.id %>
+                      <%= @job.city %>
+                    </td>
+                </tr>
 
-<br>
-<%= link_to "応募する", new_entry_path(@job, job_id: @job.id) %>
-</br>
-<br>
-  <% if user_logged_in? %>
-    <% if Keep.where(user_id: session[:user], job_id: params[:id]).present? %>
-    <%= link_to "キープを外す", keep_check_path(job_id: params[:id]) %>
-    <% else %>
-  	<%= link_to "キープする", keep_check_path(job_id: params[:id]) %>
-  	<% end %>
-  <% end %>
-</br>
-<br>
-<%= link_to "案件一覧ページへ戻る", jobs_path %>
-</br>
+                <tr>
+                  <th>メッセージ</th>
+                    <td>
+                      <%= @job.message %>
+                    </td>
+                </tr>
+
+                <tr>
+                  <td colspan="2">
+                    <div class="row row-mg mt_10 mb_10">
+                      <div class="cols_6">
+                        <div class="js_bookmark_area">
+                          <% if user_logged_in? %>
+    						<% if Keep.where(user_id: session[:user], job_id: params[:id]).present? %>
+    							<%= link_to "キープを外す", keep_check_path(job_id: params[:id]),class: "btn w-block btn--keep-pt01" %>
+    						<% else %>
+  								<%= link_to "キープする", keep_check_path(job_id: params[:id]),class: "btn w-block btn--keep-pt01" %>
+  							<% end %>
+  						  <% end %>
+	 					  
+	 					</div>
+                      </div>
+                    <div class="cols_6">
+                      <%= link_to "応募する", new_entry_path(@job, job_id: @job.id), class: "btn w-block btn--pt3" %>
+                    </div>
+
+
+
+
+
+

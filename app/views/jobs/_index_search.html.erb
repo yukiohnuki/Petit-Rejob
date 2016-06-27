@@ -1,0 +1,139 @@
+  <div class="content">
+  <div class="content-head">
+    <ul class="breadcrumb--pt1">
+  <li><a href="/">プチリジョブ</a></li><li>求人一覧</li>
+</ul>
+
+    <h1 class="heading1-pt1">プチリジョブの求人・転職・募集</h1>
+  </div>
+
+<div>
+  <%= form_for(@job, url: {controller: :jobs, action: :search}, html: {method: "get"}) do |f| %>
+    <%# fail %>
+    <div>
+      <%= f.label :都道府県 %>
+      <%= f.select :prefecture_id, Prefecture.all.map { |p| [p.name, p.id] } %>
+    </div>
+
+    <div>
+      <%= f.label :職種 %>
+      <% JobType.all.each do |job_types| %>
+      <%= job_types.name %>
+      <%= f.check_box :job_types, { multiple: true, checked: job_types[:checked], disabled: job_types[:disabled], include_hidden: false }, job_types.id, nil %>
+      
+      <% end %>
+    </div>
+      <%= f.submit "検索する", class: "btn btn--large " %>
+  
+  <% end %>
+</div>
+
+  <div class="search-pagenate-top">
+    <div class="f_left">
+      <span class="txt_size_20 rj_typo_color-c"><%= @jobs.count %></span>
+      <span class="rj_typo_color-f">件の求人が見つかりました</span>
+    </div>
+  </div>
+
+<% @jobs.each do |job| %>
+
+  <section class="search-job-box">
+    <div class="search-job-box__header table_row">
+
+      <div class="cols_8">
+
+        <span class="search-job-box__header__corp">
+          <%= job.shop.name %>【<%= job.client.name %>】
+        </span>
+
+        <h2 class="search-job-box__header__title">
+          <%= link_to job.title, job %>
+        </h2>
+      </div>
+
+      <div class="cols_4 v_bottom">
+          <span class="ml_1 f_right label__oiwai label__oiwai--5000"></span>
+        <ul class="f_right ul-inline ul-inline--lr1">
+            <li class="label__employment">正</li>
+            <li class="label__employment">ア</li>
+        </ul>
+        <div class="label__search-job-box">
+            <label class="label_mew">new</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="search-job-box__subheader">
+      <ul class="ul-inline ul-inline--mb_5-3">
+        <li class="label label--pt6">アルバイト</li>
+        <li class="label label--pt6">正社員</li>
+      </ul>
+    </div>
+
+    <div class="search-job-box__content">
+      <div class="pct">
+        <figure>
+          <%= image_tag(job.search_list_photo) %>
+        </figure>
+      </div>
+
+      <div class="info">
+          <p class="mb_15">
+            <%= job.message %>
+          </p>
+        <dl class="list-dl-pt3 list-dl-pt3--dt5em txt_size_12">
+          <dt><strong>給与</strong></dt>
+          <dd>
+            <%= job.salary %>
+          </dd>
+
+          <dt><strong>勤務地</strong></dt>
+          <dd>
+             <%= job.prefecture.name %>
+
+             <br>
+
+             <%= job.city %>
+
+             </dd>
+
+             <dt><strong>募集職種</strong></dt>
+          <dd>
+            <%= job.job_types.map{|job_type|job_type.name}.join(",") %>
+          </dd>
+        </dl>
+      </div>
+    </div>
+    <div class="search-job-box__footer">
+        <div class="table_row">
+          <div class="cols_5">
+            <div class="info-box--tell">
+              <span class="txt_size_12">TEL応募：</span><span class="txt_size_18 rj_typo_color-c">0120-954-077</span><br>
+              <span class="txt_size_12">求人番号：1019221</span>　<span class="txt_size_10">求人番号をお控え下さい。</span>
+            </div>
+          </div>
+        <div class="cols_7 t_right txt_size_16">
+          <div class="js_bookmark_area">
+
+            <% if user_logged_in? %>
+              <% if Keep.where(user_id: session[:user], job_id: job.id).present? %>
+                <%= link_to "キープを外す", keep_check_at_index_path(job_id: job.id),class: "btn btn--keep-pt01 w-140px" %>
+              <% else %>
+                <%= link_to "キープする", keep_check_at_index_path(job_id: job.id),class: "btn btn--keep-pt01 w-140px" %>
+            <% end %>
+          <% end %>
+        
+          <%= link_to "詳細を見る", job, class: "btn btn--entry01 w-140px" %>
+          <%= link_to "応募する", new_entry_path(@job, job_id: job.id), class: "btn btn--entry01 btn--pt3 btn--kantan w-240px" %>
+
+    
+        </div>
+      </div>
+    </div>
+  </div>
+  </section>
+  <% end %>
+
+
+
+

@@ -2,10 +2,10 @@
 
 
   <h3>店舗作成</h3>
-	<%= link_to "店舗作成ページへ", new_shop_path %>
+	<%= link_to "店舗作成ページへ", new_shop_path(client_id: current_client.id) %>
 
   <h3>案件作成</h3>
-	<%= link_to "案件作成ページへ", new_job_path %>
+	<%= link_to "案件作成ページへ", new_job_path(client_id: current_client.id) %>
 
   <h3>店舗一覧</h3>
 	<%= link_to "店舗一覧へ", shop_index_path %>

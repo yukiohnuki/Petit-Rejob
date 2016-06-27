@@ -1,5 +1,336 @@
-<h1>Petit Rejob</h1>
+<div class="content mt_30">
+<%= image_tag("img_top_keyv01.png") %>
+</div>
 
-<%= link_to "案件一覧ページへ", jobs_path %>
+<br></br>
+<div class="content mt_30">
+<div class="content-main">
+  <main>
+      <h1 class="txt_size_18 mb_30">プチリジョブの求人・転職情報</h1>
+        <section class="box-pt1 mb_20">
+          <div class="heading2-pt2 heading2-pt2--border-bt">
+            <h2>案件一覧から探す</h2>
+          </div>
+			<%= link_to "案件一覧ページへ", jobs_path %>
+  			<%= link_to "応募一覧ページへ", entries_path %>
+  		</section>
 
-<%= link_to "応募一覧ページへ", entries_path %>
+
+  		<section class="box-pt1 mb_20">
+  		  <div class="heading2-pt2 heading2-pt2--border-bt">
+            <h2>職種から探す</h2>
+          </div>
+          <dl class="list-dl-pt3 list-dl-pt3--dt14em txt_size_12">
+              <dt>
+                <span class="icon-right-dir"></span><a href="/biyo">美容</a>
+              </dt>
+              <dd>
+                <ul class="ul-inline ul-inline--cut">
+                    <li>
+                      <a href="/esthe">エステ</a>
+                    </li>
+                    <li>
+                      <a href="/nail">ネイリスト</a>
+                    </li>
+                    <li>
+                      <a href="/eyelist">アイリスト</a>
+                    </li>
+                    <li>
+                      <a href="/biyoshi">美容師・理容師</a>
+                    </li>
+                    <li>
+                      <a href="/biyobuin">美容部員</a>
+                    </li>
+                </ul>
+              </dd>
+              <dt>
+                <span class="icon-right-dir"></span><a href="/relaxation">リラクゼーション</a>
+              </dt>
+              <dd>
+                <ul class="ul-inline ul-inline--cut">
+                    <li>
+                      <a href="/therapist">セラピスト</a>
+                    </li>
+                    <li>
+                      <a href="/aroma">アロマ</a>
+                    </li>
+                    <li>
+                      <a href="/massage">マッサージ</a>
+                    </li>
+                    <li>
+                      <a href="/reflexology">リフレクソロジー</a>
+                    </li>
+                    <li>
+                      <a href="/seitai">整体師</a>
+                    </li>
+                    <li>
+                      <a href="/chiropractic">カイロ</a>
+                    </li>
+                </ul>
+              </dd>
+              <dt>
+                <span class="icon-right-dir"></span><a href="/chiryo">治療</a>
+              </dt>
+              <dd>
+                <ul class="ul-inline ul-inline--cut">
+                    <li>
+                      <a href="/jusei">柔道整復師</a>
+                    </li>
+                    <li>
+                      <a href="/shinkyu">鍼灸師</a>
+                    </li>
+                    <li>
+                      <a href="/massageshi">あん摩マッサージ指圧師</a>
+                    </li>
+                </ul>
+              </dd>
+              <dt>
+                <span class="icon-right-dir"></span><a href="/sports">スポーツ・フィットネス</a>
+              </dt>
+              <dd>
+                <ul class="ul-inline ul-inline--cut">
+                    <li>
+                      <a href="/yoga">ヨガ</a>
+                    </li>
+                    <li>
+                      <a href="/fitness">フィットネス</a>
+                    </li>
+                </ul>
+              </dd>
+          </dl>
+        </section>
+
+        
+
+        <section class="box-pt1 mb_20">
+          <div class="heading2-pt2 heading2-pt2--border-bt">
+            <h2>ピックアップ求人</h2>
+            <!--<span class="heading2-pt2__sub"><a href="">もっと見る<i class="icon-right-open"></i></a></span>-->
+          </div>
+          <div class="row row-mg mb_20">
+              
+              <div class="cols_4 boxset-pt1">
+                <a href="/job/B2994705">
+                    <figure><img src="https://s3-ap-northeast-1.amazonaws.com/rejob-v2-images-staging/files/client_shop_image/kiayTp/LwmDLP/dJBBb3/7ZPKX7/qFs/recommend.jpg?1456278400" alt=""></figure>
+                  <h3 class="boxset-pt1__title">
+                    MUSEE PLATINUM/新宿東口店<br>5月に成田エリア新店オープン!!オープニングスタッフ同時募集!! 　会社負担で資格取得が出来るミュゼで一緒に働きませんか？
+                  </h3>
+                </a>
+                <p class="boxset-pt1__corp"></p>
+                <dl class="boxset-pt1__terms">
+                  <dt>勤務地</dt>
+                  <dd>
+                    関東各地
+                  </dd>
+                  <dt>職種</dt>
+                  <dd>
+                    エステティシャン
+                  </dd>
+                </dl>
+              </div>
+          </div>
+        </section>
+
+        <section class="box-pt1 mb_20">
+          <div class="heading2-pt2 heading2-pt2--border-bt">
+            <h2>新着求人</h2>
+          </div>
+          <div class="row row-mg mb_20">
+            
+            <div class="cols_4 boxset-pt1">
+              <a href="/job/B5485115">
+                <figure><img src="https://s3-ap-northeast-1.amazonaws.com/rejob-v2-images-staging/files/client_shop_image/JAgQQ4/nGG5Hn/h0rgNU/PpJQAg/1PA/recommend.jpg?1462587849" alt=""></figure>
+                <h3 class="boxset-pt1__title">
+                  テストアフリカ店<br>テスト：月給３５万円以上可能！インショップだから入客率抜群！
+                </h3>
+              </a>
+              <p class="boxset-pt1__corp"></p>
+              <dl class="boxset-pt1__terms">
+                <dt>勤務地</dt>
+                <dd>
+                  東京都荒川区
+                </dd>
+                <dt>職種</dt>
+                <dd>しろはもりにおりてはっぱにから...</dd>
+              </dl>
+            </div>
+            
+            <div class="cols_4 boxset-pt1">
+              <a href="/job/B0978437">
+                <figure><img src="https://s3-ap-northeast-1.amazonaws.com/rejob-v2-images-staging/files/client_shop_image/hxBP2P/GT1KeQ/QOMXIX/9XjhRP/6X0/recommend.jpg?1460374483" alt=""></figure>
+                <h3 class="boxset-pt1__title">
+                  セガワサロン《上野》<br>テスト29：スタッフ同士が協調しあい笑顔の絶えない明るい職場環境です♪
+                </h3>
+              </a>
+              <p class="boxset-pt1__corp"></p>
+              <dl class="boxset-pt1__terms">
+                <dt>勤務地</dt>
+                <dd>
+                  東京都台東区
+                </dd>
+                <dt>職種</dt>
+                <dd>スタイリスト　/　スタイリスト...</dd>
+              </dl>
+            </div>
+            
+            <div class="cols_4 boxset-pt1">
+              <a href="/job/B4532669">
+                <figure><img src="https://s3-ap-northeast-1.amazonaws.com/rejob-v2-images-staging/files/client_shop_image/o8nrUk/3WhVIt/4Ms3Dr/qPZIh_/98g/recommend.jpg?1463046570" alt=""></figure>
+                <h3 class="boxset-pt1__title">
+                  株式会社オネスティ(神奈川県/麻生区 ) <br>株式会社リジョブ　Faura編集部　編集スタッフ・運営スタッフ
+                </h3>
+              </a>
+              <p class="boxset-pt1__corp"></p>
+              <dl class="boxset-pt1__terms">
+                <dt>勤務地</dt>
+                <dd>
+                  --
+                </dd>
+                <dt>職種</dt>
+                <dd>◆◆Faura編集部 2職種同...</dd>
+              </dl>
+            </div>
+            </div><div class="row row-mg mb_20">
+            <div class="cols_4 boxset-pt1">
+              <a href="/job/B6573133">
+                <figure><img src="https://s3-ap-northeast-1.amazonaws.com/rejob-v2-images-staging/files/client_shop_image/yL_oXH/f-O8pU/kNhm4x/NAS_22/qqQ/recommend.jpg?1458196106" alt=""></figure>
+                <h3 class="boxset-pt1__title">
+                  Ｆｅ´ｓ(フィス)<br>働きやすい環境☆スタッフ同士も仲良し!待遇◎プライベートも充実♫
+                </h3>
+              </a>
+              <p class="boxset-pt1__corp"></p>
+              <dl class="boxset-pt1__terms">
+                <dt>勤務地</dt>
+                <dd>
+                  京都府京都市下京区
+                </dd>
+                <dt>職種</dt>
+                <dd>スタイリスト/ジュニアスタイリ...</dd>
+              </dl>
+            </div>
+            
+            <div class="cols_4 boxset-pt1">
+              <a href="/job/B2891216">
+                <figure><img src="https://s3-ap-northeast-1.amazonaws.com/rejob-v2-images-staging/files/client_shop_image/g6cwGz/gcO_m-/4-M--i/YO6QmY/VT4/recommend.jpg" alt=""></figure>
+                <h3 class="boxset-pt1__title">
+                  nail &amp; eyelash Beuate Crea(ボーテクリエ)名駅店<br>★5月NEW　OPEN★　オープニングスタッフ大募集!!
+                </h3>
+              </a>
+              <p class="boxset-pt1__corp"></p>
+              <dl class="boxset-pt1__terms">
+                <dt>勤務地</dt>
+                <dd>
+                  愛知県名古屋市中村区
+                </dd>
+                <dt>職種</dt>
+                <dd>ネイリスト /アイリスト
+</dd>
+              </dl>
+            </div>
+          </div>
+        </section>
+
+      <section class="box-pt1 mb_20">
+        <div class="heading2-pt2 heading2-pt2--border-bt">
+          <h2>コンテンツ</h2>
+        </div>
+        <div class="row row-mg">
+          <div class="cols_6">
+            <div class="boxset-pt1">
+              <a href="https://relax-job.com/more/" target="_blank">
+                <figure><img class="" alt="美容・リラク・治療業界で働く人の「もっと」をかなえるWEBマガジン | more rejob" src="/assets/img_bunner_more-rejob.png"></figure>
+                <h3 class="boxset-pt1__title">モアリジョブ</h3>
+              </a>
+              <p class="boxset-pt1__txt">美容・リラク・治療業界で働く人の「もっと」をかなえるWEBマガジン</p>
+            </div>
+          </div>
+          <div class="cols_6">
+            <div class="boxset-pt1">
+              <a href="https://relax-job.com/lp/contents">
+                <figure><img class="" alt="転職サポートコンテンツ" src="/assets/img_bunner_support.png"></figure>
+                <h3 class="boxset-pt1__title">転職サポートコンテンツ</h3>
+              </a>
+              <p class="boxset-pt1__txt">就職活動のためになるリジョブ活用術を徹底解説</p>
+            </div>
+          </div>
+        </div>
+        <div class="t_right mt_10 pt_10" style="border-top: 1px solid #eee;">
+          <a href="/contents_list">Pick Upコンテンツはこちら</a>
+        </div>
+      </section>
+      <section class="box-set--pt6 mt_30">
+        <div class="box-set--pt6__title">
+          <h2>求人掲載について</h2>
+        </div>
+        <div class="box-set--pt6__content">
+          <p class="boxset-pt1__txt">
+          リジョブでは、美容師、エステティシャン、セラピスト、マッサージ師、整体師、リフレクソロジスト等、美容・リラクゼーション・治療に関するお仕事の募集情報を掲載しております。<br>
+          業界や業種に特化した求人・転職情報サイトなので、経験者や資格保有者の比率が高いのが特徴です。未経験者からマネージャー、店長クラスまで、ご希望にあった人材の確保が可能です。<br>
+          また、条件にあったユーザーに対してスカウトメールを送ることもできるので、登録者へ直接アプローチができます！<br>
+          「採用ができない」「応募が来ない」「経験者が取れない」「掲載料金が高い」などのお悩みをお持ちの美容室、マッサージ店、整骨院、エステティックサロン等の皆様、ぜひ一度、美容・リラクゼーション・治療特化型のリジョブをご利用ください。<br><br>
+          「リジョブ関連キーワード」<br>
+          エステティシャン/ヘアサロンフロント/まつ毛パーマ/アイリスト/メイク用品販売/化粧品業界/フットセラピスト/カラーセラピスト/ボディセラピス ト/アロマセラピスト/アロマテラピスト/アロママッサージ/リンパマッサージ/オイルマッサージ/足つぼマッサージ/足湯療法/足つぼ療法 /整体療術/整体士/骨格神経療法/足流整体など
+          </p>
+        </div>
+      </section>
+  </main>
+</div>
+
+<div class="content-side">
+
+      <div>
+        <a href="https://relax-job.com/lp/expo201607" class="crrent" target="_blank">
+          <img src="/assets/seminar-expo2016-min.png" alt="就職応援EXPO@Beauty 参加エントリー受付中">
+        </a>
+      </div>
+
+      <section class="box-side-nav mt_10">
+        <h2 class="box-side-nav__heading"><i class="icon-calendar"></i> 本日のリジョブ</h2>
+        <p class="t_right txt_size_12">掲載求人
+        <span class="txt_size_26 rj_typo_color-c">
+           <%= @jobs.count %>
+        </span> 件
+          <br> 登録者数 <span class="txt_size_26 rj_typo_color-c"><%= @users.count %></span> 人
+        </p>
+        <p class="t_right txt_size_10">2016/06/22（現在）</p>
+      </section>
+
+        <section class="box-side-nav">
+          <h2 class="box-side-nav__heading"><i class="icon-calendar"></i> キープ中の求人</h2>
+          <div class="boxset-sidenav">
+            <figure>
+              <a href="/users/#{current_user.id}/keep_status"><img src="/assets/enjoy_girls.jpg" alt=""></a></figure>
+            <div class="boxset-sidenav__content">
+              <p><i class="icon-building"></i>
+              後でキープの載せる
+
+
+              </p>
+              <p><i class="icon-location"></i>
+                -
+              </p>
+            </div>
+            <div class="boxset-sidenav__footer">
+              <%#= link_to "企業名", "/users/#{current_user.id}/keep_status" %>
+            </div>
+          </div>
+        </section>
+
+
+      <div class="mt_10">
+        <a href="https://relax-job.com/more/" target="_blank">
+          <img src="/assets/bunner_more-rejob.png" alt="美容・リラク・治療業界で働く人の「もっと」をかなえるWEBマガジン | more rejob">
+        </a>
+      </div>
+      <div class="mt_10">
+        <a href="https://faura.jp/" target="_blank">
+          <img src="/assets/banner_faura01.jpeg" alt="美のプロたちによる「キレイのひみつ」">
+        </a>
+      </div>
+      <div class="mt_10">
+        <a href="https://relax-job.com/kaigo">
+          <img src="/assets/banner_kaigo.png" alt="リジョブ介護はこちら">
+        </a>
+      </div>
+
+    </div>

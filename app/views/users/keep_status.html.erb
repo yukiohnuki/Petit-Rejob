@@ -1,12 +1,102 @@
-<h1>キープ一覧</h1>
+  <div class="content content--mypage">
+    <div class="content-head">
+      <ul class="breadcrumb--pt1">
+        <li><a href="/">プチリジョブ</a></li><li>キープ
+        </li>
+  	  </ul>
+  	  <h2 class="heading1-pt1">マイページ</h2>
+    </div>
 
-  <h3>キープ中の件数</h3>
-  <%= current_user.keeps.count %>件
+    <div class="mypage-side">
+      <div class="mypage-side">
+        <ul class="mypage-navi">
+          <li><%= link_to "マイページ", "/users/#{current_user.id}" %></li>
+      	  <li><a href="/mypage/job_scouts" false="">スカウト管理※</a></li>
+      	  <li><%= link_to "キープ", "/users/#{current_user.id}/keep_status" %></li>
+      	  <li><%= link_to "応募管理", "/users/#{current_user.id}/entry_status" %></li>
+      	  <li><%= link_to "メッセージ※", "/users/#{current_user.id}/keep_status" %></li>
+      	  <li><%= link_to "プロフィール", "/users/#{current_user.id}/edit" %></li>
+ 	    </ul>
+	  </div>
+	</div>
 
-  <h3>キープ中の案件</h3>
-    <ul class="keeps">
-      <% current_user.keeps.each do |keeps|  %>
-    <li>
-      <%= link_to keeps.job.title, job_path %>
-    </li>
-  <% end %>
+	<div class="mypage-main">
+    <h1 class="heading2-mypage">キープ</h1>
+
+    <div class="info-box info-box--pt3 mb_15">
+      <p>
+        気になった求人を、キープリストに保存しておくことができます。<br>
+        求人は予告なく掲載終了することがございますので、お早めにご応募ください。<br>
+        応募を中止している求人は、募集再開通知をオンにしておくことで応募再開時にご登録のアドレスに連絡致します。
+      </p>
+    </div>
+    <section>
+      <div class="mypage-box">
+        <!--ページが無い時にデザイン崩れ-->
+        <div class="m_10">
+          
+        </div>
+
+        <div class="mypage-box__content txt_size_12">
+          <table class="table table-set--pt5 table--thd-pt1">
+            <colgroup>
+              <col style="width:40px">
+              <col style="width:auto">
+              <col style="width:140px;">
+            </colgroup>
+            <thead>
+              <tr>
+                <th colspan="1">案件名</th>
+                <th>職種</th>
+                <th>応募</th>
+              </tr>
+            </thead>
+            
+            <tbody>
+              <form action="/entries" accept-charset="UTF-8" method="post"></form><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="/eoJBaetU1s+Cr/MI/sXGh7/3l+mMgrdqyvKpSNGSFjkcRyt+jhOsDIRs2bxfh57CqOd+gr2WMTjPbPOSpFWSg==">
+                <tr>
+                  <td colspan="3">
+                    <p class="txt_size_14">保存した求人情報の中で、チェックした複数の求人に、
+                      <br>まとめて応募することができます。</p>
+                    <span class="txt_size_10">3件の求人にご応募の場合、1件の求人に応募した場合と比べて、採用が決まる可能性が約2倍になります。<br>※2014年4月～2015年3月、リジョブ調べ</span>
+                  </td>
+                </tr>
+                <% current_user.keeps.each do |keeps|  %>
+                  <td>
+                    <div class="job-data-min">
+                      
+                        <%= image_tag(keeps.job.search_list_photo) %>
+
+                      <div class="job-data-min__info">
+                        <p class="job-title">
+                        <%= link_to keeps.job.title, "/jobs/#{keeps.job.id}" %> </p>
+                          <span class="job-cmp">［店舗名］<%= keeps.job.shop.name %> </span>
+                          <br>
+                          <span class="job-cmp">［住所］<%= keeps.job.city %> </span>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td>
+                    <%= keeps.job.id %>
+                  </td>
+
+                  <td>
+                    <div class="js_bookmark_area">
+
+                      <%= link_to "応募する", new_entry_path(@job, job_id: keeps.job.id), class: "btn w-block btn--pt3" %>
+                    </div>
+
+                  </td>
+            </tbody>
+              <% end %>
+          </table>
+        </div>
+      <div class="m_10">
+      </div>
+    </div>
+  </section>
+</div>
+
+
+

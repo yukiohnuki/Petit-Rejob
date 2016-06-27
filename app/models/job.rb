@@ -12,4 +12,13 @@ class Job < ActiveRecord::Base
   has_many :entries
   has_many :keeps
 
+  has_many :job_types_jobs
+  has_many :job_types, through: :job_types_jobs
+  
+  belongs_to :prefecture
+  mount_uploader :top_photo, TopPhotoUploader
+  mount_uploader :search_list_photo, SearchListPhotoUploader
+
+  scope :search_job_types, ->(id) { joins(:job_types).where("job_types.id = ?", id) }
+
 end

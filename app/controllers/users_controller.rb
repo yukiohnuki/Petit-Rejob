@@ -41,6 +41,9 @@ class UsersController < ApplicationController
   def keep_status
   end
 
+  def entry_status
+  end
+
   private
 
     def user_params

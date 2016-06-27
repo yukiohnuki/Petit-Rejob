@@ -2,6 +2,7 @@ class EntriesController < ApplicationController
   def new
     @entry = Entry.new
     @user = User.find(session[:user])
+    @job = Job.find(params[:job_id])
   
   end
 

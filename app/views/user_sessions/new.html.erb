@@ -1,19 +1,29 @@
-<h1>ログイン</h1>
 
-  <%= form_for @user, :url => {:controller => 'user_sessions', :action => 'create'} do |f| %>
+  <div class="content content--mypage">
+  <div class="content-head">
+    <ul class="breadcrumb--pt1">
+      <li><a href="/">ホーム</a></li>
+      <li><span>ログイン</span></li>
+    </ul>
+    <h1 class="heading1-pt1">求職者様ログイン</h1>
+  </div>
+  <section class="box-pt1 p_50">
+        <%= form_for @user, :url => {:controller => 'user_sessions', :action => 'create'} do |f| %>
+        <div class="row row-mg mb_10">
+          <div class="cols_5">
+          <%= f.label :メールアドレス %>
+          <%= f.text_field :mail, class: "w-block" %>
+          </div>
 
-    <div class="field">
-      <%= f.label :mail %>
-      <%= f.text_field :mail %>
-    </div>
+          <div class="cols_5">
+            <%= f.label :パスワード %>
+            <%= f.password_field :password, class: "w-block" %>
+          </div>
+          <div class="cols_2">
+            <%= f.submit "ログイン", class: "btn btn--pt2 w-block" %>
+          </div>
+        </div>
 
-    <div class="field">
-      <%= f.label :password %>
-      <%= f.password_field :password %>
-    </div>
-
-    <div class ="actions">
-      <%= f.submit "submit" %>
-    </div>
-
+  </section>
   <% end %>
+</div>

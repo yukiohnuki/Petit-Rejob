@@ -1,32 +1,36 @@
 <h1>案件作成フォーム</h1>
 
-<%= form_for @job do |f| %>
+<div>
+貴社の店舗一覧
+<ul>
+  <li>
+    <% current_client.shops.each do |shop| %>
+    店舗ID:<%= shop.id %>
+    店舗名:<%= shop.name %>
+    <% end %>
+  </li>
+</ul>
+</div>
+<br></br>
 
-  <div class = "field">
-   <%= f.label :企業ID %>
-   <%= f.text_field :client_id %>
-  </div>
-  
+<%= form_for(@job, html: {multipart: true}) do |f| %>
+
   <div class="field">
     <%= f.label :店舗ID %>
     <%= f.text_field :shop_id %>
   </div>
 
-  <div class="field">
-    <%= f.label :おすすめポイント %>
-    <%= f.text_field :recommend_point %>
-  </div>
+  <span class="picture">
+    <%= f.label :案件詳細用の写真 %>
+    <%= f.file_field :top_photo %>
+  </span>
 
-  <div class="field">
-    <%= f.label :案件一覧用の写真 %>
-    <%= f.text_field :search_list_photo %>
-  </div>
+  <span class="picture">
+    <%= f.label :検索一覧用の写真 %>
+    <%= f.file_field :search_list_photo %>
+  </span>
 
-  <div class="field">
-    <%= f.label :案件詳細のトップ用の写真 %>
-    <%= f.text_field :top_photo %>
-  </div>
-  
+
   <div class="field">
     <%= f.label :案件名 %>
     <%= f.text_field :title %>
@@ -34,7 +38,7 @@
 
   <div class="field">
     <%= f.label :都道府県 %>
-    <%= f.text_field :prefecture_id %>
+    <%= f.select :prefecture_id, Prefecture.all.map { |p| [p.name, p.id] } %>
   </div>
 
   <div class="field">
@@ -53,6 +57,7 @@
   </div>
 
   <div class ="actions">
+  <%= f.hidden_field :client_id, :value => params[:client_id] %>
   <%= f.submit "submit" %>
 
 <% end %>

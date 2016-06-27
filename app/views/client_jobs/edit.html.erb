@@ -4,32 +4,53 @@
     <%= form_for @job, :url => {:controller => 'client_jobs', :action => 'edit'}  do |f| %>
       <%#= render 'shared/error_messages' %>
 
+      <div class="field">
       <%= f.label :企業ID %>
       <%= f.text_field :client_id, class: 'form-control' %>
+      </div>
 
+      <div class="field">
       <%= f.label :店舗ID %>
       <%= f.text_field :shop_id, class: 'form-control' %>
+      </div>
 
-      <%#= f.label :案件一覧用の写真 %>
-      <%#= f.text_field :serch_list_photo, class: 'form-control' %>
+      <div class="field">
+      <%= f.label :案件一覧用の写真 %>
+      <%= f.file_field :search_list_photo, class: 'form-control' %>
+      </div>
 
-      <%#= f.label :案件詳細のトップ写真 %>
-      <%#= f.text_field :top_photo, class: 'form-control' %>
+      <div class="field">
+      <%= f.label :案件詳細のトップ写真 %>
+      <%= f.file_field :top_photo, class: 'form-control' %>
+      </div>
 
+      <div class="field">
       <%= f.label :案件名 %>
       <%= f.text_field :title, class: 'form-control' %>
+      </div>
 
+      <div class="field">
       <%= f.label :都道府県 %>
       <%= f.text_field :prefecture_id, class: 'form-control' %>
+      </div>
 
+      <div class="field">
       <%= f.label :市区町村 %>
       <%= f.text_field :city, class: 'form-control' %>
+      </div>
 
+      <div class="field">
       <%= f.label :給与 %>
       <%= f.text_field :salary, class: 'form-control' %>
+      </div>
 
+      <div class="field">
       <%= f.label :メッセージ %>
       <%= f.text_field :message, class: 'form-control' %>
+      </div>
 
+      <div class="field">
       <%= f.submit "Save changes", class: "btn btn-primary" %>
-    <% end %>
+      </div>
+
+      <% end %>
