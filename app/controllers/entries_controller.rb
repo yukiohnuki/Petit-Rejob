@@ -24,4 +24,6 @@ class EntriesController < ApplicationController
   #     params.require(:entry).permit(:name, :mail, :password,
   #                                  :password_confirmation)
   # end
+
+
 end

@@ -19,6 +19,11 @@ class Job < ActiveRecord::Base
   mount_uploader :top_photo, TopPhotoUploader
   mount_uploader :search_list_photo, SearchListPhotoUploader
 
-  scope :search_job_types, ->(id) { joins(:job_types).where("job_types.id = ?", id) }
+  scope :search_job_types, -> (job_types_params) {
+    joins(:job_types).where(job_types: {id: job_types_params[:job_types_id]})}
+
+  scope :category_search, -> (job_category) {
+    
+  }
 
 end

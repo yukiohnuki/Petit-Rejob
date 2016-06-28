@@ -22,11 +22,20 @@ class JobsController < ApplicationController
    
 
   def search
-    
+    # fail
     @job = Job.new
-    @jobs = Job.where(prefecture_params)
-    #@jobs = @jobs.joins(:job_types).where(job_types_params)
-    #fail
+    #if params[:job][:prefecture_id].present?
+      if params[:job][:prefecture_id].present?
+        @jobs = Job.where(prefecture_params)
+        #fail
+      else
+        @jobs = Job.all
+      end
+
+      if params[:job][:job_types_id].present?
+        @jobs = @jobs.search_job_types(job_types_params)
+        #fail
+      end
   end
 
   def show
@@ -43,7 +52,7 @@ class JobsController < ApplicationController
 
     def job_types_params
       params.require(:job).permit(
-         job_types:[],
+         job_types_id:[],
          )
       #fail
     end

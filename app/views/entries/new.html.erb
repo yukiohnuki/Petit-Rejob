@@ -43,6 +43,47 @@
     <colgroup>
         <col style="width:200px;">
     </colgroup>
+    
+    <head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="content-type-style" content="text/css" />
+<meta http-equiv="content-type-script" content="text/javascript" />
+<title>簡単にフォームの入力チェックが行えるjquery.validate.js</title>
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript" src="jquery.validate.min.js"></script>
+<script type="text/javascript">
+
+$(function(){
+  $("form").validate({
+    rules: {
+      name :{
+        required: true
+      },
+      name_kana :{
+        required: true
+      },
+      mail :{
+        required: true,
+        mail: true
+    },
+    messages: {
+      name :{
+        required: "お名前を入力してください"
+      },
+      name_kana :{
+        required: "URLを入力してください"
+      },
+      mail :{
+        required: "メールアドレスを入力してください",
+        mail: "正しいメールアドレスを入力してください"
+      }
+      
+    }
+  });
+})
+</script>
+</head>
+
     <tbody>
 
     
@@ -78,7 +119,7 @@
         <%= f.text_field :city %>
       </td>
     </tr>
-
+      <class=  ></class>
     </tbody>
   </table>
 </section>
