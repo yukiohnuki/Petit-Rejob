@@ -1,6 +1,12 @@
 <h1>スカウト</h1>
 
 
+  <%#= form_for(@job, url: {controller: :scouts, action: :job_search}, html: {method: "get"}) do |f| %>
+    <%#= f.select :id, current_client.jobs.map { |p| [p.title, p.id] } %>
+  
+
+  <%#= f.submit "検索する", class: "btn btn--pt5 w-200px " %>
+  <%# end %>
 
 求職者検索
   <%= form_for(@user, url: {controller: :scouts, action: :user_search}, html: {method: "get"}) do |f| %>
@@ -14,6 +20,16 @@
       <%= job_types.name %>
         <%= f.check_box :job_types_id, { multiple: true, checked: job_types[:checked], disabled: job_types[:disabled], include_hidden: false }, job_types.id, nil %>
         <% end %>
+
+      <%# if params[:job_id].present? %>
+        <%#= f.hidden_field :job_id, :value => params[:job_id] %>
+      <%# elsif%>
+        <%#= f.hidden_field :job_id, :value => params[:job][:job_id] %>
+        
+      <%# else%>
+        <%#= f.hidden_field :job_id, :value => params[:user][:job_id] %>
+        <%# fail %>
+      <%# end %>
 
       <%= f.submit "検索する", class: "btn btn--pt5 w-200px " %>
   <% end %>

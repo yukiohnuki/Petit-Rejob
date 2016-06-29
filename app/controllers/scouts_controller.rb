@@ -12,7 +12,16 @@ class ScoutsController < ApplicationController
  #    end
 
     def user_search
-    	@user = User.new
+      @job = Job.new
+      # @user = User.new
+      #   if params[:user][:job_id].present?
+      #     @job = Job.find(params[:user][:job_id])
+      # 	elsif
+      # 	  @job = Job.find(params[:job][:id])
+      # 	else
+
+      # 	  @job = Job.find(params[:job_id])
+      # 	end
 
         if params[:user][:prefecture_id].present?
           @users = User.where(prefecture_params)
