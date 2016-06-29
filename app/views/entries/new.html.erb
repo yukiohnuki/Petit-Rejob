@@ -25,7 +25,7 @@
         </div>
 
         <div class="job-data-min mt_10">
-          <%#= image_tag(job.search_list_photo) %>
+          <%#= image_tag(@job.search_list_photo) %>
 
             <div class="job-data-min__info">
               <span class="job-cmp"><%= @job.client.name %></span>
@@ -37,7 +37,7 @@
     </div>
 
     <h2 class="heading2-pt6 bt_30">基本情報</h2>
-<%= form_for(@user, url: {controller: :entries, action: :create}, html: {method: "post"}) do |f| %>
+<%= form_for(@user, url: {controller: :entries, action: :confirm}, html: {method: "post"}) do |f| %>
 <section class="box-pt2 mb_30">
   <table class="table table-set--pt1 table--thd-20 w-block txt_size_12">
     <colgroup>
@@ -113,12 +113,21 @@ $(function(){
     </tr>
 
     <tr>
+      <th><%= f.label :都道府県 %><span class="label label--pt3 label--small">必須</span>
+      </th>
+      <td>
+        <%= f.select :prefecture_id, Prefecture.all.map { |p| [p.name, p.id] } %>
+      </td>
+    </tr>
+
+    <tr>
       <th><%= f.label :市区町村 %><span class="label label--pt3 label--small">必須</span>
       </th>
       <td>
         <%= f.text_field :city %>
       </td>
     </tr>
+
       <class=  ></class>
     </tbody>
   </table>
@@ -126,7 +135,7 @@ $(function(){
 
 <section class="box-pt3 p_20 t_center txt_size_14">
       <p><a href="/info/terms" target="_blank">利用規約</a>に同意して</p>
-      <%= f.hidden_field :job, :value => params[:job_id] %>
+      <%= f.hidden_field :job_id, :value => params[:job_id] %>
       <%= f.submit "応募する", class: "btn btn--pt3 btn--large w-280px submit_btn" %>
       <% end %>
     </section>

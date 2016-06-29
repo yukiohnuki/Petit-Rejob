@@ -23,6 +23,12 @@
 
           	    <tbody>
                 <tr>
+                  <th>募集職種</th>
+                    <td>
+                       <%= @job.job_types.map{|job_type|job_type.name}.join(",") %>
+                    </td>
+                </tr>
+                <tr>
                   <th>給与</th>
                     <td>
                       <%= @job.salary %>
@@ -32,7 +38,7 @@
                 <tr>
                   <th>勤務地</th>
                     <td>
-                      <%= @job.prefecture.id %>
+                      <%= @job.prefecture.name %>
                       <%= @job.city %>
                     </td>
                 </tr>

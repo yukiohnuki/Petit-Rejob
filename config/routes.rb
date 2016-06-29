@@ -11,13 +11,36 @@ Rails.application.routes.draw do
   resources:users
   resources:user_sessions
   resources:shops
+
   resources:jobs do
     collection do
       get 'search', to:'jobs#search'
     end
   end
+
+  resources:scouts do
+    collection do
+      get 'job_search', to:'scouts#job_search'
+    end
+
+    collection do
+      get 'user_search', to:'scouts#user_search'
+    end
+  end
+
   resources:client_jobs, only:[:index, :edit]
-  resources:entries
+  
+  resources:entries do
+    collection do
+      post 'confirm', to:'entries#confirm'
+    end
+    collection do
+      get 'complete', to: 'entries#complete'
+    end
+  end
+
+  
+
   resources:job_entries, only:[:index]
   resources:messages
 

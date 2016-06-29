@@ -1,0 +1,108 @@
+  <div class="content">
+  <div class="contents-head">
+    <div class="table_row clear mt_30 mb_30">
+      <div class="cols_3 v_middle">
+        <h1 class="txt_size_20">求人への応募</h1>
+      </div>
+      <div class="cols_9">
+        <ul class="step_chart step_chart__cols3">
+          <li class="step_chart__cols">
+            <span class="step_chart__cols__block">応募、および基本情報の登録</span>
+          </li>
+          <li class="step_chart__cols active">
+            <span class="step_chart__cols__block">登録内容の確認</span>
+          </li>
+          <li class="step_chart__cols">
+            <span class="step_chart__cols__block">登録完了</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <section class="box-pt1 mt_20 mb_20">
+    <div class="heading2-pt2 heading2-pt2--border-bt">
+      <h2>応募する案件</h2>
+    </div>
+
+
+      <div class="job-data-min job-data-min__recommend_job">
+        <span class="job-data-min__img">
+            <%#= image_tag(@job.search_list_photo) %>
+        </span>
+        <div class="job-data-min__info">
+           <span class="job-cmp"><%= @job.client.name %></span>
+              <p class="job-title"><%= @job.title %></p>
+        </div>
+      </div>
+  </section>
+
+  <div class="info-box info-box--pt5 t_center mb_10">
+      <p><b>まだ応募は完了していません。入力内容を確認後、「応募を完了する」ボタンをクリックしてください。</b></p>
+  </div>
+
+  <%= form_for(@user, url: {controller: :entries, action: :create}, html: {method: "post"}) do |f| %>
+    
+  <h2 class="heading2-pt6 mt_30">基本情報</h2>
+  <section class="box-pt2">
+      <table class="table table-set--pt1 table--thd-20 w-block txt_size_12">
+        <colgroup>
+          <col style="width:200px;">
+        </colgroup>
+        <tbody>
+        <tr>
+          <th>名前
+          </th>
+          <td>
+            <%= @user.name %>
+    		<%= f.hidden_field :name %>
+          </td>
+        </tr>
+
+        <tr>
+          <th>ふりがな
+          </th>
+          <td>
+            <%= @user.name_kana %>
+    		<%= f.hidden_field :name_kana %>
+          </td>
+        </tr>
+
+        <tr>
+          <th>メールアドレス
+          </th>
+          <td>
+            <%= @user.mail %>
+    		<%= f.hidden_field :mail %>
+          </td>
+        </tr>
+
+        <tr>
+          <th>都道府県
+          </th>
+          <td>
+            <%= @user.prefecture.name %>
+    		<%= f.hidden_field :prefecture_id %>
+          </td>
+        </tr>
+
+        <tr>
+          <th>市区町村
+          </th>
+          <td>
+            <%= @user.city %>
+    		<%= f.hidden_field :city %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="box-pt3 p_20 t_center txt_size_14 mt_30">
+
+  	<%= link_to '戻る', :back, class: "btn btn--large w-280px" %>
+  	<%= f.hidden_field :job_id, :value => params[:user][:job_id] %>
+    <%= f.submit '応募する', class: "btn btn--pt3 btn--large w-280px" %>
+  </section>
+<% end %>
+</div>

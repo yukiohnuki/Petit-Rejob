@@ -117,9 +117,10 @@ ActiveRecord::Schema.define(version: 20160622074840) do
   create_table "scouts", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "job_id"
-    t.integer  "scout_status"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer  "client_id"
+    t.integer  "status",     limit: 2, default: 0, null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
   end
 
   create_table "selection_statuses", force: :cascade do |t|

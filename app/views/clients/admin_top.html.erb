@@ -15,3 +15,6 @@
 
   <h3>応募一覧</h3>
 	<%= link_to "応募一覧へ", job_entries_path %>
+
+　<h3>スカウト</h3>
+	<%= link_to "スカウト", new_scout_path(client_id: current_client.id, job_id: current_client.jobs.first.id) %>

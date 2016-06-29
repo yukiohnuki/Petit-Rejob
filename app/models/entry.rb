@@ -7,8 +7,8 @@ class Entry < ActiveRecord::Base
   # attr_accessor :name, :name_kana, :mail
 
   # # Validationを定義する
-  # validates :name, presence: true
-  # validates :name_kana, presence: true
+   validates :user_id, presence: true
+   validates :job_id, presence: true
   # validates :mail, presence: true
 
 end

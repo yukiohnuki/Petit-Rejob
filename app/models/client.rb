@@ -6,6 +6,7 @@ class Client < ActiveRecord::Base
 
   has_many :shops
   has_many :jobs
+  has_many :scouts
 
   def authenticate(inputed_value)
     inputed_value == password

@@ -97,6 +97,17 @@
               </td>
           </tr>
 
+          <tr>
+            <th><%= f.label :職種 %></th>
+            <td>
+            <% @user.job_types.each do |job_types| %>
+              <%= job_types.name %>
+              <%= f.check_box :job_types_id, { multiple: true, checked: job_types[:checked], disabled: job_types[:disabled], include_hidden: false }, job_types.id, nil %>
+            <% end %>
+
+            </td>
+          </tr>
+
         </tbody>
       </table>
       

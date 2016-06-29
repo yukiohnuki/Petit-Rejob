@@ -67,6 +67,27 @@ Job.create(client_id: "1",
 ◎研修充実(アーユルヴェーダ理論・エステティック概論・解剖生理学・皮膚理論・栄養学・香粧品科学・フェイシャルとボディの技術と理論・接客マナー・関係法規・他)色々学べます。")
 	   #top_photo: open("#{Rails.root}/db/data/shop_album.jpg"))
 
+
+Job.create(client_id: "1",
+	   shop_id: "1",
+	   recommend_point:"0",
+	   title: "大貫の二つ目に作った求人案件だよ",
+	   prefecture_id: "12",
+	   city: "新座市",
+	   salary: "あなたの頑張り次第でいくらでも！",
+	   message: "グッドプライス、ハイクオリティーを提供するサロン♪ 
+
+【シャンティー】のコンセプト 
+
+楽しく本気でやるを信念に活気あるサロン造りを行なっています! 
+美容師の価値、社会的地位を少しでも高めたいとの思いでシャンティーをオープンしました。 
+徹底した顧客満足度、スタッフ満足度を追求しています! 
+好きな日、好きな時間に仕事をし、プライベート、趣味の時間も十分に確保できます! 
+ライフスタイルに合わせて仕事が出来るのもシャンティーだからこそ可能です! 
+完全歩合なのでやった分だけ自分に返って来ます!今までと違ったやりがいを感じて頂けたらと思います! バリバリやれる環境が整っています! 
+とにかく、難しい事は考えずに、ご応募後一度でいいのでサロン見学、お話しをしにいらして頂けたらと思います! ")
+	   #top_photo: open("#{Rails.root}/db/data/shop_album.jpg"))
+
 Client.create(name:"荒巻という企業",
 	     mail:"aramaki@rejob.co.jp",
 	     password:"test",
@@ -107,6 +128,23 @@ Job.create(client_id: "2",
 社内のレクリエーションがあり、結束力あるスタッフと人を中心とした教育があります。 
 
 時代に対応した変化と大事なものを守っていく柔軟な会社です。")
+	   #top_photo: open("#{Rails.root}/db/data/shop_album.jpg"))
+
+
+	   Job.create(client_id: "2",
+	   shop_id: "2",
+	   recommend_point:"0",
+	   title: "荒巻の二つ目にして最強のグレイトフルな求人案件だぜ",
+	   prefecture_id: "6",
+	   city: "志木市",
+	   salary: "時給4001万円です",
+	   message: "「emmi」や「W&E」でお客様に商品を紹介し、お客様が求めるライフスタイルのアドバイスしてください。 
+
+★スポーツコンシェルジュ★ 
+店内の数百足のスニーカーから選りすぐりの提案やヨガ・ラン・フィットネスウエアを担当し、外からの綺麗をサポートします。 
+
+★インナービューティーコンシェルジュ★ 
+カウンセリングを行い、お客様の内からの綺麗をサポートします。サプリメントコーナーやジューサリーも併設予定です。")
 	   #top_photo: open("#{Rails.root}/db/data/shop_album.jpg"))
 
 Prefecture.create(id: 1, name: "北海道")
@@ -168,4 +206,12 @@ JobType.create(id: 7, name: "ヨガ")
 JobTypesJob.create(job_type_id: 1, job_id: 1)
 JobTypesJob.create(job_type_id: 2, job_id: 1)
 JobTypesJob.create(job_type_id: 3, job_id: 2)
-
+JobTypesJob.create(job_type_id: 4, job_id: 3)
+JobTypesJob.create(job_type_id: 5, job_id: 3)
+JobTypesJob.create(job_type_id: 6, job_id: 3)
+JobTypesJob.create(job_type_id: 7, job_id: 3)
+JobTypesUser.create(job_type_id: 1, user_id: 1)
+JobTypesUser.create(job_type_id: 2, user_id: 1)
+JobTypesUser.create(job_type_id: 3, user_id: 2)
+JobTypesUser.create(job_type_id: 4, user_id: 2)
+JobTypesUser.create(job_type_id: 5, user_id: 2)

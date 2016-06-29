@@ -7,27 +7,65 @@
     <h1 class="heading1-pt1">プチリジョブの求人・転職・募集</h1>
   </div>
 
-<div>
-  <%= form_for(@job, url: {controller: :jobs, action: :search}, html: {method: "get"}) do |f| %>
-    <%# fail %>
-    <div>
-      <%= f.label :都道府県 %>
-      <%= f.select :prefecture_id, Prefecture.all.map { |p| [p.name, p.id] }, prompt: "選んでちょんまげ" %>
-    </div>
+<%= form_for(@job, url: {controller: :jobs, action: :search}, html: {method: "get"}) do |f| %>
+  <div class="box-pt2">
+    <!-- <table class="table table-search mb_30"> -->
+    <table class="table table-set--pt1 table--thd-pt1 w-block txt_size_12">
+      <colgroup>
+        <col style="width: 100px;">
+        <col style="width: 389px;">
+        <col style="width: 100px;">
+        <col style="width: 389px;">
+      </colgroup>
+      <tbody class="table-search__conditions">
 
-    <div>
-      <%= f.label :職種 %>
+  
+      <tr>
+        <th>
+          <%= f.label :都道府県 %>
+        </th>
+        <td colspan="3">
+
+
+      <%= f.select :prefecture_id, Prefecture.all.map { |p| [p.name, p.id] }, prompt: "選んでちょんまげ" %>
+    
+
+        </td>
+      </tr>
+
+      <tr>
+        <th><%= f.label :職種 %></th>
+        <td colspan="3">
+
       <% JobType.all.each do |job_types| %>
       <%= job_types.name %>
       <%= f.check_box :job_types_id, { multiple: true, checked: job_types[:checked], disabled: job_types[:disabled], include_hidden: false }, job_types.id, nil %>
-      
       <% end %>
-    </div>
-      <%= f.submit "検索する", class: "btn btn--large " %>
+
+      </td>
+      </tr>
+
+      </tbody>
+      <tfoot>
+      <tr>
+        <td class="table-search__action-area" colspan="4">
+          <div class="" id="job_search_count_arrow">
+   
+      <%= f.submit "検索する", class: "btn btn--pt5 w-200px " %>
+
+      </div>
+
+      </td>
+      </tr>
+      </tfoot>
+    </table>
+  </div>
   
   <% end %>
 
-</div>
+
+
+
 
   <div class="search-pagenate-top">
     <div class="f_left">

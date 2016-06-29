@@ -10,10 +10,16 @@ class User < ActiveRecord::Base
   has_many :keeps
   has_many :messages
   has_many :scouts
-  has_one :prefecture
+  belongs_to :prefecture
+
+  has_many :job_types_users
+  has_many :job_types, through: :job_types_users
 
   def authenticate(inputed_value)
     inputed_value == password
   end
   
+
+  scope :search_job_types, -> (job_types_params) {
+    joins(:job_types).where(job_types: {id: job_types_params[:job_types_id]})}
 end

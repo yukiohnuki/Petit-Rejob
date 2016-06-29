@@ -3,7 +3,8 @@ class CreateScouts < ActiveRecord::Migration
     create_table :scouts do |t|
       t.integer :user_id
       t.integer :job_id
-      t.integer :scout_status
+      t.integer :client_id
+      t.integer :status, default: 0, null: false, limit: 1
 
       t.timestamps null: false
     end
