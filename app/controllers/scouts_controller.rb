@@ -12,8 +12,9 @@ class ScoutsController < ApplicationController
  #    end
 
     def user_search
+
       @job = Job.new
-      # @user = User.new
+      @user = User.new
       #   if params[:user][:job_id].present?
       #     @job = Job.find(params[:user][:job_id])
       # 	elsif
@@ -35,6 +36,13 @@ class ScoutsController < ApplicationController
         end
     end
 
+
+    def scouts_create
+      @user = User.new
+      Scout.create(user_id: params[:user_id], client_id: params[:client_id].to_i)
+      redirect_to "/scouts/new"
+    end
+
     private
 
     def prefecture_params
@@ -48,5 +56,15 @@ class ScoutsController < ApplicationController
          job_types_id:[],
          )
       #fail
+    end
+
+    def client_logged_in?
+      session[:client].present?
+    end
+
+    def current_client
+      if client_logged_in?
+         Client.find(session[:client])
+      end
     end
 end

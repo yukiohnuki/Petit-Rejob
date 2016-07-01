@@ -23,19 +23,23 @@ class JobsController < ApplicationController
 
   def search
     # fail
-    @job = Job.new
-    #if params[:job][:prefecture_id].present?
-      if params[:job][:prefecture_id].present?
-        @jobs = Job.where(prefecture_params)
-        #fail
-      else
-        @jobs = Job.all
-      end
 
-      if params[:job][:job_types_id].present?
-        @jobs = @jobs.search_job_types(job_types_params)
-        #fail
-      end
+    @job = Job.new
+    if params[:job][:prefecture_id].present?
+      @jobs = Job.where(prefecture_params)
+      @prefecture = Prefecture.find(params[:job][:prefecture_id])
+    else
+      @jobs = Job.all
+    end
+
+    if params[:job][:job_types_id].present?
+      @jobs = @jobs.search_job_types(job_types_params)
+    end
+
+    @jobs = @jobs.uniq
+
+    @job_types = JobType.where(id: params[:job].try(:[], :job_types_id))
+  
   end
 
   def show

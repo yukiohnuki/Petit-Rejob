@@ -6,6 +6,41 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+(1..50).size.times do |time|
+  User.create(name:"テスト求職者#{time}番目の人",
+	    name_kana: "てすと",
+	    mail: "test+#{time}@rejob.co.jp",
+	    password: "test",
+	    password_confirmation: "test",
+	    prefecture_id: "1",
+	    city: "札幌市")
+end
+
+(1..50).size.times do |time|
+  User.create(name:"テスト求職者#{time}番目の人",
+	    name_kana: "てすと",
+	    mail: "test+#{time}@rejob.co.jp",
+	    password: "test",
+	    password_confirmation: "test",
+	    prefecture_id: "2",
+	    city: "青森市")
+end
+
+(1..50).size.times do |time|
+  User.create(name:"テスト求職者#{time}番目の人",
+	    name_kana: "てすと",
+	    mail: "test+#{time}@rejob.co.jp",
+	    password: "test",
+	    password_confirmation: "test",
+	    prefecture_id: "3",
+	    city: "てすと市")
+end
+
+(1..150).size.times do |time|
+  JobTypesUser.create(job_type_id: "#{time % 7 + 1}", user_id: "#{time}")
+end
+
+
 User.create(name:"大貫っていう求職者",
 	    name_kana: "おおぬき",
 	    mail: "ohnuki@rejob.co.jp",
@@ -21,6 +56,7 @@ User.create(name:"荒巻っていう求職者",
 	    password_confirmation: "test",
 	    prefecture_id: "2",
 	    city: "東松山市")
+
 
 AdminUser.create(name: "大貫祐輝というadminuser",
 	       mail: "ohnuki@rejob.co.jp",
@@ -72,7 +108,7 @@ Job.create(client_id: "1",
 	   shop_id: "1",
 	   recommend_point:"0",
 	   title: "大貫の二つ目に作った求人案件だよ",
-	   prefecture_id: "12",
+	   prefecture_id: "1",
 	   city: "新座市",
 	   salary: "あなたの頑張り次第でいくらでも！",
 	   message: "グッドプライス、ハイクオリティーを提供するサロン♪ 
@@ -130,12 +166,11 @@ Job.create(client_id: "2",
 時代に対応した変化と大事なものを守っていく柔軟な会社です。")
 	   #top_photo: open("#{Rails.root}/db/data/shop_album.jpg"))
 
-
-	   Job.create(client_id: "2",
+Job.create(client_id: "2",
 	   shop_id: "2",
 	   recommend_point:"0",
 	   title: "荒巻の二つ目にして最強のグレイトフルな求人案件だぜ",
-	   prefecture_id: "6",
+	   prefecture_id: "2",
 	   city: "志木市",
 	   salary: "時給4001万円です",
 	   message: "「emmi」や「W&E」でお客様に商品を紹介し、お客様が求めるライフスタイルのアドバイスしてください。 
@@ -147,53 +182,232 @@ Job.create(client_id: "2",
 カウンセリングを行い、お客様の内からの綺麗をサポートします。サプリメントコーナーやジューサリーも併設予定です。")
 	   #top_photo: open("#{Rails.root}/db/data/shop_album.jpg"))
 
+
+#Jobのデータを生成
+
+(1..50).size.times do |time|
+  Job.create(title: "テスト用の案件番号#{time}の求人",
+  			 client_id: "2",
+  			 shop_id: "2",
+  			 prefecture_id: "1",
+  			 city: "札幌市",
+  			 salary: "【正社員】 月給 200,000円〜450,000円
+※月給+能力給(店舗・個人) 
+　◆前職の経験や能力等を考慮の上、優遇! 
+　◆研修期間2ヶ月間は下記の給与 
+未経験/月給:18万円　　〇経験者/月給:20万円 
+
+◆◇◆年　収　例◆◇◆ 
+<入社2年目/エステティシャン> 
+　年収:450万円/月給:23万円(一律手当含む)+賞与(年2回) 
+<入社3年目/店長> 
+　年収:600万円/月給:30万円(一律手当含む)+賞与(年2回)
+",
+  			 message: "【GRACE/全国16店舗展開】 
+GRACEは、常に進化を続け、カテゴリーにとらわれない新しいエステティックの形を追い続けています。これからもお客様が本当に求める「美」を追い求め、いままでになかった新しい「美しい」を叶え続ける場所でありつづけます。 
+お客様の立場に立って考えた、丁寧な接客を心がけ、高い技術と適切なカウンセリングでお客様から厚い信頼を頂いています。 
+
+年齢や社歴、経験など関係なくスタッフ同士の仲が良く、協力し合いながらサロンを盛り上げています♪ 
+
+【仕事内容】 
+◆脱毛フェイシャルサロン 
+最新のマシンによる脱毛トリートメント 
+美容に関するカウンセリングなどをお願い致します。 
+
+その他、カウンセリング業務もお任せします。 
+
+
+【研修制度】 
+GRACEでは未経験からスタートし、活躍しているスタッフがたくさんいます◎ 
+最新の知識と技術を身に付けることができるので、お客様だけでなくスタッフもどんどんキレイになれるんです♪ 
+
+未経験の方には最新の技術や接客マナー、言葉遣いなど、社会人としての基礎から学んでいただきます。 
+技術研修・OJT研修・フォローーアップ研修など働きながらプロの技術・知識が身に付く環境が整っております。 
+
+研修後も分からないことは、現場で先輩スタッフが教えていくので安心して下さい。遠慮せず聞いて下さいね♪ 
+
+【経験者の方】 
+経験のある方も最新の技術や専門知識を習得することができ、スキルアップできる環境があります。 
+スキルや頑張りを正当に評価し、収入UPできる環境、さらに幹部候補としてサロンの中心として活躍して頂ける環境をご用意しています。 
+
+【スキルアップできる環境です☆】 
+GRACEでは脱毛専門サロンもございます。まずはトータルエステサロンからスタートし、ご希望があれば脱毛専門サロンへということも可能ですので、様々な分野の技術を身に付けて頂けます♪",
+  			 recommend_point: "0")
+end
+
+(1..50).size.times do |time|
+  Job.create(title: "テスト用の案件番号#{time}の求人",
+  			 client_id: "2",
+  			 shop_id: "2",
+  			 prefecture_id: "2",
+  			 city: "志木市",
+  			 salary: "【正社員】 月給 200,000円〜450,000円
+※月給+能力給(店舗・個人) 
+　◆前職の経験や能力等を考慮の上、優遇! 
+　◆研修期間2ヶ月間は下記の給与 
+未経験/月給:18万円　　〇経験者/月給:20万円 
+
+◆◇◆年　収　例◆◇◆ 
+<入社2年目/エステティシャン> 
+　年収:450万円/月給:23万円(一律手当含む)+賞与(年2回) 
+<入社3年目/店長> 
+　年収:600万円/月給:30万円(一律手当含む)+賞与(年2回)
+",
+  			 message: "【GRACE/全国16店舗展開】 
+GRACEは、常に進化を続け、カテゴリーにとらわれない新しいエステティックの形を追い続けています。これからもお客様が本当に求める「美」を追い求め、いままでになかった新しい「美しい」を叶え続ける場所でありつづけます。 
+お客様の立場に立って考えた、丁寧な接客を心がけ、高い技術と適切なカウンセリングでお客様から厚い信頼を頂いています。 
+
+年齢や社歴、経験など関係なくスタッフ同士の仲が良く、協力し合いながらサロンを盛り上げています♪ 
+
+【仕事内容】 
+◆脱毛フェイシャルサロン 
+最新のマシンによる脱毛トリートメント 
+美容に関するカウンセリングなどをお願い致します。 
+
+その他、カウンセリング業務もお任せします。 
+
+
+【研修制度】 
+GRACEでは未経験からスタートし、活躍しているスタッフがたくさんいます◎ 
+最新の知識と技術を身に付けることができるので、お客様だけでなくスタッフもどんどんキレイになれるんです♪ 
+
+未経験の方には最新の技術や接客マナー、言葉遣いなど、社会人としての基礎から学んでいただきます。 
+技術研修・OJT研修・フォローーアップ研修など働きながらプロの技術・知識が身に付く環境が整っております。 
+
+研修後も分からないことは、現場で先輩スタッフが教えていくので安心して下さい。遠慮せず聞いて下さいね♪ 
+
+【経験者の方】 
+経験のある方も最新の技術や専門知識を習得することができ、スキルアップできる環境があります。 
+スキルや頑張りを正当に評価し、収入UPできる環境、さらに幹部候補としてサロンの中心として活躍して頂ける環境をご用意しています。 
+
+【スキルアップできる環境です☆】 
+GRACEでは脱毛専門サロンもございます。まずはトータルエステサロンからスタートし、ご希望があれば脱毛専門サロンへということも可能ですので、様々な分野の技術を身に付けて頂けます♪",
+  			 recommend_point: "0")
+end
+
+(1..50).size.times do |time|
+  Job.create(title: "テスト用の案件番号#{time}の求人",
+  			 client_id: "2",
+  			 shop_id: "2",
+  			 prefecture_id: "3",
+  			 city: "志木市",
+  			 salary: "【正社員】 月給 200,000円〜450,000円
+※月給+能力給(店舗・個人) 
+　◆前職の経験や能力等を考慮の上、優遇! 
+　◆研修期間2ヶ月間は下記の給与 
+未経験/月給:18万円　　〇経験者/月給:20万円 
+
+◆◇◆年　収　例◆◇◆ 
+<入社2年目/エステティシャン> 
+　年収:450万円/月給:23万円(一律手当含む)+賞与(年2回) 
+<入社3年目/店長> 
+　年収:600万円/月給:30万円(一律手当含む)+賞与(年2回)
+",
+  			 message: "【GRACE/全国16店舗展開】 
+GRACEは、常に進化を続け、カテゴリーにとらわれない新しいエステティックの形を追い続けています。これからもお客様が本当に求める「美」を追い求め、いままでになかった新しい「美しい」を叶え続ける場所でありつづけます。 
+お客様の立場に立って考えた、丁寧な接客を心がけ、高い技術と適切なカウンセリングでお客様から厚い信頼を頂いています。 
+
+年齢や社歴、経験など関係なくスタッフ同士の仲が良く、協力し合いながらサロンを盛り上げています♪ 
+
+【仕事内容】 
+◆脱毛フェイシャルサロン 
+最新のマシンによる脱毛トリートメント 
+美容に関するカウンセリングなどをお願い致します。 
+
+その他、カウンセリング業務もお任せします。 
+
+
+【研修制度】 
+GRACEでは未経験からスタートし、活躍しているスタッフがたくさんいます◎ 
+最新の知識と技術を身に付けることができるので、お客様だけでなくスタッフもどんどんキレイになれるんです♪ 
+
+未経験の方には最新の技術や接客マナー、言葉遣いなど、社会人としての基礎から学んでいただきます。 
+技術研修・OJT研修・フォローーアップ研修など働きながらプロの技術・知識が身に付く環境が整っております。 
+
+研修後も分からないことは、現場で先輩スタッフが教えていくので安心して下さい。遠慮せず聞いて下さいね♪ 
+
+【経験者の方】 
+経験のある方も最新の技術や専門知識を習得することができ、スキルアップできる環境があります。 
+スキルや頑張りを正当に評価し、収入UPできる環境、さらに幹部候補としてサロンの中心として活躍して頂ける環境をご用意しています。 
+
+【スキルアップできる環境です☆】 
+GRACEでは脱毛専門サロンもございます。まずはトータルエステサロンからスタートし、ご希望があれば脱毛専門サロンへということも可能ですので、様々な分野の技術を身に付けて頂けます♪",
+  			 recommend_point: "0")
+end
+
+
+
+
+#JobTypeJobのデータを生成
+
+(1..150).size.times do |time|
+JobTypesJob.create(job_type_id: "#{time % 7 + 1}", job_id: "#{time}")
+end
+
+
+
+
+
+
+
+#Prefecture,JobType,SelectionStatusを生成
+
+JobTypesJob.create(job_type_id: 1, job_id: 1)
+JobTypesJob.create(job_type_id: 2, job_id: 1)
+JobTypesJob.create(job_type_id: 3, job_id: 2)
+JobTypesJob.create(job_type_id: 4, job_id: 3)
+JobTypesJob.create(job_type_id: 5, job_id: 3)
+JobTypesJob.create(job_type_id: 6, job_id: 3)
+JobTypesJob.create(job_type_id: 7, job_id: 4)
+
+
 Prefecture.create(id: 1, name: "北海道")
 Prefecture.create(id: 2, name: "青森県")
 Prefecture.create(id: 3, name: "岩手県")
-Prefecture.create(id: 4, name: "宮城県")
-Prefecture.create(id: 5, name: "秋田県")
-Prefecture.create(id: 6, name: "山形県")
-Prefecture.create(id: 7, name: "福島県")
-Prefecture.create(id: 8, name: "茨城県")
-Prefecture.create(id: 9, name: "栃木県")
-Prefecture.create(id: 10, name: "群馬県")
-Prefecture.create(id: 11, name: "埼玉県")
-Prefecture.create(id: 12, name: "千葉県")
-Prefecture.create(id: 13, name: "東京都")
-Prefecture.create(id: 14, name: "神奈川県")
-Prefecture.create(id: 15, name: "新潟県")
-Prefecture.create(id: 16, name: "富山県")
-Prefecture.create(id: 17, name: "石川県")
-Prefecture.create(id: 18, name: "福井県")
-Prefecture.create(id: 19, name: "山梨県")
-Prefecture.create(id: 20, name: "長野県")
-Prefecture.create(id: 21, name: "岐阜県")
-Prefecture.create(id: 22, name: "静岡県")
-Prefecture.create(id: 23, name: "愛知県")
-Prefecture.create(id: 24, name: "三重県")
-Prefecture.create(id: 25, name: "滋賀県")
-Prefecture.create(id: 26, name: "京都府")
-Prefecture.create(id: 27, name: "大阪府")
-Prefecture.create(id: 28, name: "兵庫県")
-Prefecture.create(id: 29, name: "奈良県")
-Prefecture.create(id: 30, name: "和歌山県")
-Prefecture.create(id: 31, name: "鳥取県")
-Prefecture.create(id: 32, name: "島根県")
-Prefecture.create(id: 33, name: "岡山県")
-Prefecture.create(id: 34, name: "広島県")
-Prefecture.create(id: 35, name: "山口県")
-Prefecture.create(id: 36, name: "徳島県")
-Prefecture.create(id: 37, name: "香川県")
-Prefecture.create(id: 38, name: "愛媛県")
-Prefecture.create(id: 39, name: "高知県")
-Prefecture.create(id: 40, name: "福岡県")
-Prefecture.create(id: 41, name: "佐賀県")
-Prefecture.create(id: 42, name: "長崎県")
-Prefecture.create(id: 43, name: "熊本県")
-Prefecture.create(id: 44, name: "大分県")
-Prefecture.create(id: 45, name: "宮崎県")
-Prefecture.create(id: 46, name: "鹿児島県")
-Prefecture.create(id: 47, name: "沖縄県")
+# Prefecture.create(id: 4, name: "宮城県")
+# Prefecture.create(id: 5, name: "秋田県")
+# Prefecture.create(id: 6, name: "山形県")
+# Prefecture.create(id: 7, name: "福島県")
+# Prefecture.create(id: 8, name: "茨城県")
+# Prefecture.create(id: 9, name: "栃木県")
+# Prefecture.create(id: 10, name: "群馬県")
+# Prefecture.create(id: 11, name: "埼玉県")
+# Prefecture.create(id: 12, name: "千葉県")
+# Prefecture.create(id: 13, name: "東京都")
+# Prefecture.create(id: 14, name: "神奈川県")
+# Prefecture.create(id: 15, name: "新潟県")
+# Prefecture.create(id: 16, name: "富山県")
+# Prefecture.create(id: 17, name: "石川県")
+# Prefecture.create(id: 18, name: "福井県")
+# Prefecture.create(id: 19, name: "山梨県")
+# Prefecture.create(id: 20, name: "長野県")
+# Prefecture.create(id: 21, name: "岐阜県")
+# Prefecture.create(id: 22, name: "静岡県")
+# Prefecture.create(id: 23, name: "愛知県")
+# Prefecture.create(id: 24, name: "三重県")
+# Prefecture.create(id: 25, name: "滋賀県")
+# Prefecture.create(id: 26, name: "京都府")
+# Prefecture.create(id: 27, name: "大阪府")
+# Prefecture.create(id: 28, name: "兵庫県")
+# Prefecture.create(id: 29, name: "奈良県")
+# Prefecture.create(id: 30, name: "和歌山県")
+# Prefecture.create(id: 31, name: "鳥取県")
+# Prefecture.create(id: 32, name: "島根県")
+# Prefecture.create(id: 33, name: "岡山県")
+# Prefecture.create(id: 34, name: "広島県")
+# Prefecture.create(id: 35, name: "山口県")
+# Prefecture.create(id: 36, name: "徳島県")
+# Prefecture.create(id: 37, name: "香川県")
+# Prefecture.create(id: 38, name: "愛媛県")
+# Prefecture.create(id: 39, name: "高知県")
+# Prefecture.create(id: 40, name: "福岡県")
+# Prefecture.create(id: 41, name: "佐賀県")
+# Prefecture.create(id: 42, name: "長崎県")
+# Prefecture.create(id: 43, name: "熊本県")
+# Prefecture.create(id: 44, name: "大分県")
+# Prefecture.create(id: 45, name: "宮崎県")
+# Prefecture.create(id: 46, name: "鹿児島県")
+# Prefecture.create(id: 47, name: "沖縄県")
 
 
 JobType.create(id: 1, name: "エステ")
@@ -203,15 +417,14 @@ JobType.create(id: 4, name: "美容師")
 JobType.create(id: 5, name: "柔道整復師")
 JobType.create(id: 6, name: "セラピスト")
 JobType.create(id: 7, name: "ヨガ")
-JobTypesJob.create(job_type_id: 1, job_id: 1)
-JobTypesJob.create(job_type_id: 2, job_id: 1)
-JobTypesJob.create(job_type_id: 3, job_id: 2)
-JobTypesJob.create(job_type_id: 4, job_id: 3)
-JobTypesJob.create(job_type_id: 5, job_id: 3)
-JobTypesJob.create(job_type_id: 6, job_id: 3)
-JobTypesJob.create(job_type_id: 7, job_id: 3)
-JobTypesUser.create(job_type_id: 1, user_id: 1)
-JobTypesUser.create(job_type_id: 2, user_id: 1)
-JobTypesUser.create(job_type_id: 3, user_id: 2)
-JobTypesUser.create(job_type_id: 4, user_id: 2)
-JobTypesUser.create(job_type_id: 5, user_id: 2)
+
+
+
+SelectionStatus.create(id: 1, name: "新規応募")
+SelectionStatus.create(id: 2, name: "選考中")
+SelectionStatus.create(id: 3, name: "採用")
+SelectionStatus.create(id: 4, name: "不採用")
+SelectionStatus.create(id: 5, name: "辞退")
+
+
+

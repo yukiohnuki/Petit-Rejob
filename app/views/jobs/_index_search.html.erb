@@ -4,7 +4,25 @@
   <li><a href="/">プチリジョブ</a></li><li>求人一覧</li>
 </ul>
 
-    <h1 class="heading1-pt1">プチリジョブの求人・転職・募集</h1>
+    <h1 class="heading1-pt1">
+    
+
+    <% if @prefecture.present? && @job_types.present? %>
+      <%= @prefecture.name %>の<%= @job_types.all.map { |p| p.name } %>の求人・転職・募集
+
+    <% elsif @prefecture.present? %>
+      <%= @prefecture.name %>の求人・転職・募集
+    
+    <% elsif @job_types.present? %>
+      <%= @job_types.all.map { |p| p.name } %>の求人・転職・募集
+
+    <% else %>
+      美容・治療・リラクゼーションの求人・転職・募集
+
+    <% end %>
+    
+
+    </h1>
   </div>
 
 <%= form_for(@job, url: {controller: :jobs, action: :search}, html: {method: "get"}) do |f| %>
@@ -26,9 +44,8 @@
         </th>
         <td colspan="3">
 
-
-      <%= f.select :prefecture_id, Prefecture.all.map { |p| [p.name, p.id] }, prompt: "選んでちょんまげ" %>
-    
+      
+      <%= f.select :prefecture_id, Prefecture.all.map { |p| [p.name, p.id] }, selected:@prefecture.try(:id), include_blank: "選んでちょんまげ"  %>
 
         </td>
       </tr>
@@ -37,9 +54,19 @@
         <th><%= f.label :職種 %></th>
         <td colspan="3">
 
-      <% JobType.all.each do |job_types| %>
-      <%= job_types.name %>
-      <%= f.check_box :job_types_id, { multiple: true, checked: job_types[:checked], disabled: job_types[:disabled], include_hidden: false }, job_types.id, nil %>
+      <% JobType.all.each do |job_type| %>
+      
+        <%= f.check_box :job_types_id, { multiple: true, 
+                                         checked: 
+                                         @job_types.try(:include?, (job_type)),  
+                                         disabled: job_type[:disabled],
+                                         include_hidden: false
+                                         },
+                                        job_type.id,
+                                        nil %>
+        <%= job_type.name %>
+
+
       <% end %>
 
       </td>

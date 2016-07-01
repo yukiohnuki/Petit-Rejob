@@ -1,0 +1,126 @@
+ <!DOCTYPE html>
+<html>
+<head>
+ <link rel="stylesheet" media="all" href="https://client.relax-job.com/assets/client_frontend/application-9cb4b3c70c51f887f5ef49a196dca440.css">
+</head>
+<body>
+
+
+  <div class="cl__wapper">
+      <div class="cl__sidebar">
+        <ul class="sidebar-menu">
+
+
+        <li class="sidebar-menu__i-home">
+          <%= link_to "HOME", admin_top_path %>
+        </li>
+
+        <li class="sidebar-menu__i-application">
+          <%= link_to "応募一覧", job_entries_path %>
+        </li>
+
+        <li class="sidebar-menu__i-message">
+          <%= link_to "メッセージ", message_index_path %>
+        </li>
+
+        <li class="sidebar-menu__i-scouts">
+          <%= link_to "スカウト", new_scout_path(client_id: current_client.id, job_id: current_client.jobs.first.id) %>
+        </li>
+
+        <li class="sidebar-menu__i-jobs">
+          <%= link_to "求人管理", client_jobs_path %>
+        </li>
+
+        <li class="sidebar-menu__i-shop">
+          <%= link_to "店舗一覧", shop_index_path %>
+        </li>
+        </ul>
+      </div>
+
+      <div class="cl__content">
+    
+<div id="show_tab_type" data-show-tab=""></div>
+<h1 class="heading1-pt1">応募者詳細</h1>
+  <ul class="js-tab-cl js-tab-cl--pt1 txt_size_13 mt_5">
+    <li><a href="/clients/4945/job_entries/600910">求人者情報</a></li>
+    <li><a class="active" href="/clients/4945/job_entries/600910/job_entry_messages">メッセージ</a></li>
+  </ul>
+  <div class="js-tab-cl--content">
+    <div class="clear p_20">
+
+      <%# @user = User.find(params[:user_id]) %>
+      <h2 class="txt_size_22 mt_15">
+        <%#= @user.name %>
+      </h2>
+
+      <h3>
+        <%#= @user.prefecture.name %>
+        <%#= @user.city %>
+      </h3>
+      <div class="chat-area">
+        <div class="chat-area__timelime" style="overflow: scroll;height: 400px;overflow-x: hidden;">
+
+
+      <div class="_timelime__message">
+    <div class="_timelime__message__img"><!-- 画像は仕様が決まり次第 -->
+      <div class="message__img__icon message__img__icon--cmp"></div>
+    </div>
+
+    <div class="_timelime__message__body">
+      <p class="_message__body__sender" data-sender="client"></p>
+      
+      <p>
+        <ul>
+        <% current_client.messages.where(user_id: params[:user_id]).each do |message| %>
+        <li>
+        
+        <%= message.body %>
+        
+        </li>
+        <% end %>
+        </ul>
+      </p>
+
+      <span class="_message__body__date">2016/06/29 16:18</span>
+    </div>
+  </div>
+
+        </div>
+        <div class="chat-area__message" id="user_message">
+          <div class="_i-setting">
+            <div class="_i-setting_tab js-tab-cl2">
+              <a class="_i-setting__title active js_acMenu" id="entry_messages_form_title" href="javascript:void(0);">メッセージ</a>
+              
+
+            <div class="js-tab-cl2--content">
+              <div id="entry_messages_form">
+                <div class="_i-setting__body">
+
+                <%= form_for(@message, url: {controller: :clients, action: :message_create}, html: {method: "post"}) do |f| %>
+    
+      <div class="__message_textarea">
+
+         
+         <%= f.text_area :body  %>
+        <%= f.hidden_field :client_id, :value => params[:client_id] %>
+        <%= f.hidden_field :user_id, :value => params[:user_id] %>
+        <%= f.submit "送信", class:"btn btn--pt3 btn-large w-100" %>
+      
+     </div>
+     <% end %>
+   
+
+   </div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

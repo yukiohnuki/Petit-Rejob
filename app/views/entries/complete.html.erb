@@ -29,7 +29,8 @@
       </div>
       <div class="mb_60 txt_size_14">
         <p class="t_center mb_15">あなたのプロフィールを充実させる事で、企業にスカウト・採用されやすくなります！</p>
-        <p class="t_center mb_15"><a href="/users/#{current_user.id}" class="btn w-400px">プロフィールを編集する</a></p>
+        <p class="t_center mb_15"><%=link_to "プロフィールを編集する", "/users/#{current_user.id}", class:"btn w-400px" %>
+        </p>
       </div>
 
 

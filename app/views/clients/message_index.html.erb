@@ -1,0 +1,118 @@
+ <!DOCTYPE html>
+<html>
+<head>
+ <link rel="stylesheet" media="all" href="https://client.relax-job.com/assets/client_frontend/application-9cb4b3c70c51f887f5ef49a196dca440.css">
+</head>
+<body>
+
+
+  <div class="cl__wapper">
+      <div class="cl__sidebar">
+        <ul class="sidebar-menu">
+
+
+        <li class="sidebar-menu__i-home">
+          <%= link_to "HOME", admin_top_path %>
+        </li>
+
+        <li class="sidebar-menu__i-application">
+          <%= link_to "応募一覧", job_entries_path %>
+        </li>
+
+        <li class="sidebar-menu__i-message">
+          <%= link_to "メッセージ", message_index_path %>
+        </li>
+
+        <li class="sidebar-menu__i-scouts">
+          <%= link_to "スカウト", new_scout_path(client_id: current_client.id, job_id: current_client.jobs.first.id) %>
+        </li>
+
+        <li class="sidebar-menu__i-jobs">
+          <%= link_to "求人管理", client_jobs_path %>
+        </li>
+
+        <li class="sidebar-menu__i-shop">
+          <%= link_to "店舗一覧", shop_index_path %>
+        </li>
+        </ul>
+      </div>
+
+      <div class="cl__content">
+    <h1 class="heading1-pt1">メッセージ一覧</h1>
+
+<div class="tab-area">
+  <ul class="tab-cl txt_size_13 mt_5">
+    <li>
+      <span class="active">
+        メッセージ
+      </span>
+    </li>
+  </ul>
+</div>
+
+<div class="js-tab-cl--content">
+  <div class="clear p_20">
+    <div class="pagination--pt1 f_right">
+      
+    </div>
+  </div>
+
+  <table class="table table-set--pt3 table--thd-pt1 txt_size_12 w-block">
+    <colgroup>
+      <col style="width:25%;">
+      
+      <col style="width:160px;">
+      <col style="width:auto;">
+      <col style="width:100px;">
+    </colgroup>
+
+    <tbody>
+      <tr>
+        <th>氏名／基本情報</th>
+        <th>職種</th>
+        <th>内容</th>
+        
+        <th>アクション</th>
+      </tr>
+
+      <% current_client.messages.each do |message| %>
+      <tr>
+        <!-- 氏名／基本情報／職種／経験 -->
+          <td>
+            <p class="mb_5">
+              <span class="txt_size_14">
+                <strong><%= message.user.name %></strong>
+              </span>
+            </p>
+
+              <p>
+                <%= message.user.prefecture.name %><%= message.user.city %>
+              </p>
+
+              
+
+          </td>
+
+          <td>
+            <p>
+              <%= message.user.job_types.map {|job_type| job_type.name } %>
+              </p>
+          </td>
+
+          <td>
+          	<%= message.body %>
+          </td>
+
+          <!-- 採用ステップ -->
+          <td>
+          <%= link_to "メッセージ詳細", message_new_path(client_id: current_client.id, user_id: message.user.id), class:"btn btn--xxsmall mb_1" %>
+          </td>
+         </tr>
+<% end %>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</body>
+</html>

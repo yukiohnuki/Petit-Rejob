@@ -4,7 +4,7 @@ class CreateScouts < ActiveRecord::Migration
       t.integer :user_id
       t.integer :job_id
       t.integer :client_id
-      t.integer :status, default: 0, null: false, limit: 1
+      t.integer :status, default: 0, null: false, limit: 2
 
       t.timestamps null: false
     end

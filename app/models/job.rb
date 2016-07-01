@@ -11,6 +11,7 @@ class Job < ActiveRecord::Base
   belongs_to :client
   has_many :entries
   has_many :keeps
+  has_many :scouts
 
   has_many :job_types_jobs
   has_many :job_types, through: :job_types_jobs

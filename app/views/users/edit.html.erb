@@ -11,10 +11,10 @@
       <div class="mypage-side">
         <ul class="mypage-navi">
           <li><%= link_to "マイページ", "/users/#{current_user.id}" %></li>
-          <li><a href="/mypage/job_scouts" false="">スカウト管理※</a></li>
+          <li><%= link_to "スカウト管理", "/users/#{current_user.id}/scout_status" %></li>
           <li><%= link_to "キープ", "/users/#{current_user.id}/keep_status" %></li>
-          <li><%= link_to "応募管理※", "/users/#{current_user.id}/entry_status" %></li>
-          <li><%= link_to "メッセージ※", "/users/#{current_user.id}/keep_status" %></li>
+          <li><%= link_to "応募管理", "/users/#{current_user.id}/entry_status" %></li>
+          <li><%= link_to "メッセージ", "/messages" %></li>
           <li><%= link_to "プロフィール", "/users/#{current_user.id}/edit" %></li>
       </ul>
     </div>
@@ -85,7 +85,7 @@
             <th><%= f.label :都道府県 %><span class="label label--pt3 label--small">必須</span>
             </th>
               <td>
-                <%= f.text_field :prefecture_id, class: 'form-control' %>
+                <%= f.select :prefecture_id, Prefecture.all.map { |p| [p.name, p.id] }, class: 'form-control' %>
               </td>
           </tr>
 
@@ -97,16 +97,7 @@
               </td>
           </tr>
 
-          <tr>
-            <th><%= f.label :職種 %></th>
-            <td>
-            <% @user.job_types.each do |job_types| %>
-              <%= job_types.name %>
-              <%= f.check_box :job_types_id, { multiple: true, checked: job_types[:checked], disabled: job_types[:disabled], include_hidden: false }, job_types.id, nil %>
-            <% end %>
-
-            </td>
-          </tr>
+          
 
         </tbody>
       </table>

@@ -11,10 +11,10 @@
       <div class="mypage-side">
         <ul class="mypage-navi">
           <li><%= link_to "マイページ", "/users/#{current_user.id}" %></li>
-          <li><a href="/mypage/job_scouts" false="">スカウト管理※</a></li>
+          <li><%= link_to "スカウト管理", "/users/#{current_user.id}/scout_status" %></li>
           <li><%= link_to "キープ", "/users/#{current_user.id}/keep_status" %></li>
-          <li><%= link_to "応募管理※", "/users/#{current_user.id}/entry_status" %></li>
-          <li><%= link_to "メッセージ※", "/users/#{current_user.id}/keep_status" %></li>
+          <li><%= link_to "応募管理", "/users/#{current_user.id}/entry_status" %></li>
+          <li><%= link_to "メッセージ", "/messages" %></li>
           <li><%= link_to "プロフィール", "/users/#{current_user.id}/edit" %></li>
       </ul>
     </div>
@@ -33,18 +33,6 @@
 <div class="entries-list-header-wrap">
   <ul class="js-tab-nav js-tab-nav--pt2 txt_size_12">
     <li><a href="/mypage/entries?tab=all" class="active">全て表示</a></li>
-    <li>
-        <a href="/mypage/entries?tab=new" false="">新規応募</a>
-    </li>
-    <li>
-        <span class="disabled">選考中</span>
-    </li>
-    <li>
-        <span class="disabled">採用</span>
-    </li>
-    <li class="float_right">
-        <span class="disabled">不採用・辞退</span>
-    </li>
   </ul>
   <div class="js-tab-cont">
     <section>
@@ -53,6 +41,7 @@
           
         </div>
         <div class="mypage-box__content">
+
           <table class="table table-set--pt5 table--thd-pt3">
             <colgroup>
               <col style="width: 60px;">
@@ -60,22 +49,21 @@
               <col style="width: auto">
               <col style="width: 100px;">
             </colgroup>
+
             <tbody>
+
             <tr>
               <th>状況</th>
-              <th>
-                <select name="sort" id="select-order" class="select--sort" data-location="/mypage/entries" data-tab="all"><option value="entry_date">応募日</option>
-                <option value="next_interview_date">次回の面接日</option></select>
-              </th>
+              <th>応募日</th>
               <th>案件名</th>
               <th class="txt_size_10">リジョブへの報告</th>
             </tr>
 <!-- 要編集 -->
-
+<% current_user.entries.each do |entries|  %>
             <tr>
-              <% current_user.entries.each do |entries|  %>
+               
                   <td>
-                      <div class="sprite_mypage-status mypage-status-sinki"></div>
+                      <%= entries.selection_status.name %>
                   </td>
 
                   <td>
@@ -93,18 +81,35 @@
                         <p class="job-title">
                           <%= link_to entries.job.title, "/jobs/#{entries.job.id}" %>
                         </p>
+
+
+                        <% if entries.selection_status.id == 2 %>
+                        <%= link_to "メッセージ", new_message_path(user_id: current_user.id, client_id: entries.job.client.id),class: "btn btn--xxsmall w-block mb_1 not-adopted-btn" %>
+                        <% end %>
                       </div>
                     </div>
                   </td>
 
                   <td>
-                      <a class="btn btn--xxsmall w-block mb_1 not-adopted-btn" data-id="600893" href="">辞退</a>
+                      <% if entries.selection_status.id == 1 %>
+                        <%= link_to "辞退", entry_refuse_users_path(entry_id: entries.id, selection_status_id: 5),class: "btn btn--xxsmall w-block mb_1 not-adopted-btn" %>
+                      
 
+                      <% elsif entries.selection_status.id == 2 %>
+                      <%= link_to "内定", entry_adoption_users_path(entry_id: entries.id, selection_status_id: 3),class: "btn btn--pt1 btn--xxsmall w-block mb_1 employed-report-btn" %>
+                      <%= link_to "辞退", entry_refuse_users_path(entry_id: entries.id, selection_status_id: 5),class: "btn btn--xxsmall w-block mb_1 not-adopted-btn" %>
+
+                      <% else %>
+
+                      <% end %>
                   </td>
+
                 </tr>
             </tbody>
 
             <% end %>
+
+            
 
           </table>
         </div>

@@ -1,9 +1,98 @@
-<h1>店舗一覧</h1>
+ <!DOCTYPE html>
+<html>
+<head>
+ <link rel="stylesheet" media="all" href="https://client.relax-job.com/assets/client_frontend/application-9cb4b3c70c51f887f5ef49a196dca440.css">
+</head>
+<body>
 
-  <ul class="clients">
-  <% current_client.shops.each do |shop|  %>
-    <li>
-      <%= link_to shop.name, "/shop_edit/#{shop.id}" %>
-    </li>
+
+  <div class="cl__wapper">
+      <div class="cl__sidebar">
+        <ul class="sidebar-menu">
+
+
+        <li class="sidebar-menu__i-home">
+          <%= link_to "HOME", admin_top_path %>
+        </li>
+
+        <li class="sidebar-menu__i-application">
+          <%= link_to "応募一覧", job_entries_path %>
+        </li>
+
+        <li class="sidebar-menu__i-message">
+          <%= link_to "メッセージ", message_index_path %>
+        </li>
+
+        <li class="sidebar-menu__i-scouts">
+          <%= link_to "スカウト", new_scout_path(client_id: current_client.id, job_id: current_client.jobs.first.id) %>
+        </li>
+
+        <li class="sidebar-menu__i-jobs">
+          <%= link_to "求人管理", client_jobs_path %>
+        </li>
+
+        <li class="sidebar-menu__i-shop">
+          <%= link_to "店舗一覧", shop_index_path %>
+        </li>
+        </ul>
+      </div>
+  <!-- cl__sidebar -->
+
+  <div class="cl__content">
+    <h1 class="heading1-pt1">店舗管理 - 一覧</h1>
+<div class="info-box info-box--pt5 mb_10 txt_size_12 mb_10">
+  <p>【注意】</p>
+  <p>新しい店舗を登録したい場合は「新規追加」ボタンより作成をお願い致します。</p>
+  <p>店舗情報の変更などをを行う場合は「店舗編集依頼フォーム」から申請依頼をお願い致します。</p>
+  <p>ただし入力いただいた情報が貴社の現状と異なると判断した場合は、断りなく編集・削除させていただきますのでご了承下さい。</p>
+  <br>
+
+</div>
+<div class="tab-area">
+<div class="js-tab-cl--content">
+  <div class="clear p_20">
+    <p class="f_left"><span class="txt_size_18 rj_typo_color-c">1</span><span class="rj_typo_color-f">件中<span class="translation_missing" title="translation missing: ja.1件表示しています">1件表示しています</span></span></p>
+    <ul class="pagination--pt1 f_right">
+      
+    </ul>
+  </div>
+  <table class="table table-set--pt3 table--thd-pt1 txt_size_12 w-block">
+    <colgroup>
+      
+      <col style="width:200px;">
+      <col style="width:auto;">
+      <col style="width:140px;">
+      
+    </colgroup>
+    <tbody>
+      <tr>
+        <th>店舗ID</th>
+        <th>店舗名</th>
+        <th>アクション</th>
+      </tr>
+
+      <% current_client.shops.each do |shop|  %>
+      <tr>
+      	<td>
+      	  <%= shop.id %>
+      	</td>
+
+      	<td>
+      	  <%= shop.name %>
+      	</td>
+
+      	<td>
+      	  <%= link_to "編集", "/shop_edit/#{shop.id}",class:"btn btn--xxsmall mb_1" %>
+      	</td>
+      </tr>
   <% end %>
+  </tbody>
+  </table>
+  </div>
+  </div>
+  </div>
+  </div>
+  </body>
+  </html>
+  
 

@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
 
   has_many :job_types_users
   has_many :job_types, through: :job_types_users
+  
 
   def authenticate(inputed_value)
     inputed_value == password

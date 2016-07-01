@@ -4,6 +4,12 @@ class CreateEntries < ActiveRecord::Migration
       t.integer :user_id
       t.integer :job_id
       t.integer :selection_status_id
+      t.string :name
+      t.string :name_kana
+      t.string :mail
+      t.integer :prefecture_id
+      t.string :city
+
       t.datetime :start_date
       t.datetime :interview_date
 

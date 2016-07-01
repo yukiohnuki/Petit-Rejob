@@ -1,20 +1,160 @@
-<h1>企業管理画面トップ</h1>
+  
+  <!DOCTYPE html>
+<html>
+<head>
+ <link rel="stylesheet" media="all" href="https://client.relax-job.com/assets/client_frontend/application-9cb4b3c70c51f887f5ef49a196dca440.css">
+</head>
+<body>
 
 
-  <h3>店舗作成</h3>
-	<%= link_to "店舗作成ページへ", new_shop_path(client_id: current_client.id) %>
+  <div class="cl__wapper">
+      <div class="cl__sidebar">
+        <ul class="sidebar-menu">
 
-  <h3>案件作成</h3>
-	<%= link_to "案件作成ページへ", new_job_path(client_id: current_client.id) %>
 
-  <h3>店舗一覧</h3>
-	<%= link_to "店舗一覧へ", shop_index_path %>
+        <li class="sidebar-menu__i-home">
+          <%= link_to "HOME", admin_top_path %>
+        </li>
 
-  <h3>案件一覧</h3>
-	<%= link_to "案件一覧へ", client_jobs_path %>
+        <li class="sidebar-menu__i-application">
+          <%= link_to "応募一覧", job_entries_path %>
+        </li>
 
-  <h3>応募一覧</h3>
-	<%= link_to "応募一覧へ", job_entries_path %>
+        <li class="sidebar-menu__i-message">
+          <%= link_to "メッセージ", message_index_path %>
+        </li>
 
-　<h3>スカウト</h3>
-	<%= link_to "スカウト", new_scout_path(client_id: current_client.id, job_id: current_client.jobs.first.id) %>
+        <li class="sidebar-menu__i-scouts">
+          <%= link_to "スカウト", new_scout_path(client_id: current_client.id, job_id: current_client.jobs.first.id) %>
+        </li>
+
+        <li class="sidebar-menu__i-jobs">
+          <%= link_to "求人管理", client_jobs_path %>
+        </li>
+
+        <li class="sidebar-menu__i-shop">
+          <%= link_to "店舗一覧", shop_index_path %>
+        </li>
+        </ul>
+      </div>
+  <!-- cl__sidebar -->
+  
+  <div class="cl__content">
+    <h1 class="heading1-pt1">企業様管理画面　トップページ</h1>
+  <div class="info-box info-box--pt4  mt_10 mb_10 txt_size_12">
+    <p class="info-box--pt4__title">初めてログインされたお客様</p>
+    <p>まずは「店舗一覧」の「新規追加」ボタンから、募集を行う店舗のご登録をお願いいたします。その他の操作方法につきましてはマニュアルを<a href="https://relax-job.com/contents_list/wp-content/uploads/admin_manual.pdf" target="_blank">ダウンロード</a>してご確認下さい。</p>
+  </div>
+
+  <!-- ここまで -->
+
+<div class="box-cl1 p_20 mt_15">
+  <div class="heading2-pt6">
+    <h2>お知らせ</h2>
+    <p class="heading2-pt6__sub">
+      <a href="https://client.relax-job.com/clients/4945/news">過去一覧はこちら</a>
+    </p>
+  </div>
+
+  <dl class="list-dl-pt3 list-dl-pt3--bdb list-dl-pt3--dt9em">
+        <dt>2016年06月06日</dt>
+        <dd>
+          <a href="https://client-staging.relax-job.com/clients/4945/news/49">サロン見学受付機能が追加されます</a>
+          <span class="label label--pt3 label--small label--bdr20 ml_10">new</span></dd>
+        <dt>2016年05月06日</dt>
+        <dd>
+          スカウトが受諾されますと、連絡先が自動で取得されるように変更となりました
+        </dd><dt>2016年04月12日</dt>
+        <dd>
+          <a href="https://client-staging.relax-job.com/clients/4945/news/45">4月1日からオプションリニューアル！5月以降もNEWオプションリリースします！</a>
+  </dd></dl>
+</div>
+
+<div class="row row-mg mt_15">
+
+    <div class="cols_6">
+      <div class="panel-cl1">
+        <h2 class="panel-cl1__title">現在のデータ</h2>
+        <div class="panel-cl1__body">
+          <div class="row row-mg">
+            <div class="cols_4">
+              <p class="txt_size_12">応募人数</p>
+              <p><span class="txt_size_60">
+              	<% current_client.jobs.each do |jobs| %>
+    			<%= current_client.jobs.entries.count %>
+    			</span>名</p>
+    			<% end %>
+            </div>
+            <div class="cols_4">
+              <p class="txt_size_12">面接人数</p>
+              <p><span class="txt_size_60">1</span>名</p>
+            </div>
+            <div class="cols_4">
+              <p class="txt_size_12">採用人数</p>
+              <p><span class="txt_size_60">0</span>名</p>
+            </div>
+          </div>
+          <div class="row row-mg panel-cl1__body__btn">
+          
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cols_3">
+      <div class="panel-cl1">
+        <h2 class="panel-cl1__title">
+          スカウトについて
+        </h2>
+        <div class="panel-cl1__body">
+          スカウト機能を利用すると、<br>
+          リジョブに登録している優秀な求職者に
+          貴社からアプローチをかけることができます！
+          <p class="panel-cl1__body__btn">
+            <%= link_to "スカウトを送る", new_scout_path(client_id: current_client.id, job_id: current_client.jobs.first.id), class:"btn w-block" %>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cols_3">
+  <div class="panel-cl1">
+    <h2 class="panel-cl1__title">現在の契約情報</h2>
+    <div class="panel-cl1__body">
+      <dl class="list-dl-pt3 list-dl-pt3--bdb">
+        <dt>プラン名</dt>
+        <dd class="t_right">アドバンス</dd>
+        <dt>最低利用期間</dt>
+        <dd class="t_right">180日</dd>
+        <dt>店舗数</dt>
+        <dd class="t_right">1〜1店舗</dd>
+      </dl>
+      <p class="panel-cl1__body__btn">
+      
+      </p>
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+<div class="mt_10 mt_15">
+  <a onclick="ga('send', 'event', 'Banner', 'click', 'Rejob Admin');" href="https://geo.itunes.apple.com/us/app/rejob-admin/id980221011?mt=8&amp;uo=6" target="itunes_store"><img src="https://relax-job.com/contents_list/wp-content/uploads/img_bunner_app.png" alt="Img bunner app"></a>
+    <a href="/clients/4945/news/1" class="ml_10"><img src="https://relax-job.com/contents_list/wp-content/uploads/img_bunner_syoukai.png" alt="Img bunner syoukai"></a>
+</div>
+
+  </div>
+</div>
+
+
+
+
+
+</body>
+</html>
+
+
+
+

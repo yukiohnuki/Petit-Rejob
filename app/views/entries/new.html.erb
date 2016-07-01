@@ -37,7 +37,8 @@
     </div>
 
     <h2 class="heading2-pt6 bt_30">基本情報</h2>
-<%= form_for(@user, url: {controller: :entries, action: :confirm}, html: {method: "post"}) do |f| %>
+<%= form_for(@entry, url: {controller: :entries, action: :confirm}, html: {method: "post"}) do |f| %>
+<%= render 'entries/error_message' %>
 <section class="box-pt2 mb_30">
   <table class="table table-set--pt1 table--thd-20 w-block txt_size_12">
     <colgroup>
@@ -128,15 +129,49 @@ $(function(){
       </td>
     </tr>
 
+    <tr>
+      <th><%= f.label :希望職種 %><span class="label label--pt3 label--small">必須</span>
+      </th>
+      <td>
+        <% @job.job_types.each do |job_type| %>
+
+
+      
+        <%= f.check_box :job_type_ids, { multiple: true,
+                                         checked: job_type[:checked],
+                                         disabled: job_type[:disabled],
+                                         include_hidden: false
+                                         },
+                                        job_type.id,
+                                        nil %>
+        <%= job_type.name %>
+        <% end %>
+      </td>
+      </tr>
+
+
+
       <class=  ></class>
     </tbody>
   </table>
 </section>
 
 <section class="box-pt3 p_20 t_center txt_size_14">
-      <p><a href="/info/terms" target="_blank">利用規約</a>に同意して</p>
-      <%= f.hidden_field :job_id, :value => params[:job_id] %>
-      <%= f.submit "応募する", class: "btn btn--pt3 btn--large w-280px submit_btn" %>
+
+      <% if session[:user].present? %>
+        <p><a href="/info/terms" target="_blank">利用規約</a>に同意して</p>
+        <%= f.hidden_field :job_id, :value => @job.id %>
+        <%= f.hidden_field :user_id, :value => session[:user] %>
+        <%= f.hidden_field :selection_status_id, :value => 1 %>
+        <%= f.submit "応募する", class: "btn btn--pt3 btn--large w-280px submit_btn" %>
+
+      <% else %>
+        <div>
+        <strong>応募するにはログインが必要です</strong>
+        </div>
+        <%= link_to "ログイン画面へ", new_user_session_path, class: "btn btn--pt3 btn--large w-280px submit_btn" %>
+      <% end %>
+
       <% end %>
     </section>
   </div>

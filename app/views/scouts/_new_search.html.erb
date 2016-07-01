@@ -1,4 +1,44 @@
-<h1>スカウト</h1>
+<!DOCTYPE html>
+<html>
+<head>
+ <link rel="stylesheet" media="all" href="https://client.relax-job.com/assets/client_frontend/application-9cb4b3c70c51f887f5ef49a196dca440.css">
+</head>
+<body>
+
+
+  <div class="cl__wapper">
+      <div class="cl__sidebar">
+        <ul class="sidebar-menu">
+
+
+        <li class="sidebar-menu__i-home">
+          <%= link_to "HOME", admin_top_path %>
+        </li>
+
+        <li class="sidebar-menu__i-application">
+          <%= link_to "応募一覧", job_entries_path %>
+        </li>
+
+        <li class="sidebar-menu__i-message">
+          <%= link_to "メッセージ", message_index_path %>
+        </li>
+
+        <li class="sidebar-menu__i-scouts">
+          <%= link_to "スカウト", new_scout_path(client_id: current_client.id, job_id: current_client.jobs.first.id) %>
+        </li>
+
+        <li class="sidebar-menu__i-jobs">
+          <%= link_to "求人管理", client_jobs_path %>
+        </li>
+
+        <li class="sidebar-menu__i-shop">
+          <%= link_to "店舗一覧", shop_index_path %>
+        </li>
+        </ul>
+      </div>
+  <!-- cl__sidebar -->
+  <div class="cl__content">
+    <h1 class="heading1-pt1">スカウト</h1>
 
 
   <%#= form_for(@job, url: {controller: :scouts, action: :job_search}, html: {method: "get"}) do |f| %>
@@ -8,18 +48,54 @@
   <%#= f.submit "検索する", class: "btn btn--pt5 w-200px " %>
   <%# end %>
 
-求職者検索
-  <%= form_for(@user, url: {controller: :scouts, action: :user_search}, html: {method: "get"}) do |f| %>
+  <div id="ajax-response-wrapper">
+    
+      <div class="tab-area">
+        <!-- 店舗求人のセレクト -->
+        
+        <!-- タブ -->
+        <ul class="tab-cl txt_size_13">
+  <li><a class="active" href="/clients/4945/jobs/514775/scouts">検索</a></li>
   
+</ul>
 
-      <%= f.label :都道府県 %>
-      <%= f.select :prefecture_id, Prefecture.all.map { |p| [p.name, p.id] }, prompt: "選んでちょんまげ" %>
-      
-      <%= f.label :職種 %>
-      <% JobType.all.each do |job_types| %>
-      <%= job_types.name %>
+      </div>
+      <div class="js-tab-cl--content">
+        <div class="p_20">
+          <div class="content__search-box">
+            <div id="job_scouts_search">
+              <input type="hidden" name="client_shop_id" id="client_shop_id">
+<input type="hidden" name="job_content_id" id="job_content_id">
+
+<%= form_for(@user, url: {controller: :scouts, action: :user_search}, html: {method: "get"}) do |f| %>
+<table class="table table-set--client-search w-block txt_size_12">
+  <colgroup>
+    <col style="width: 10%;">
+    <col style="width: 40%;">
+    <col style="width: 10%;">
+    <col style="width: 40%;">
+  </colgroup>
+
+  <tbody>
+  
+  
+  
+  <tr>
+    <th><%= f.label :都道府県 %></th>
+      <td colspan="3">
+        <%= f.select :prefecture_id, Prefecture.all.map { |p| [p.name, p.id] }, prompt: "選んでちょんまげ" %>
+      </td>
+  </tr>
+
+  <tr>
+    <th><%= f.label :職種 %></th>
+      <td colspan="3">
+        <% JobType.all.each do |job_types| %>
+        <%= job_types.name %>
         <%= f.check_box :job_types_id, { multiple: true, checked: job_types[:checked], disabled: job_types[:disabled], include_hidden: false }, job_types.id, nil %>
         <% end %>
+      </td>
+  </tr>
 
       <%# if params[:job_id].present? %>
         <%#= f.hidden_field :job_id, :value => params[:job_id] %>
@@ -30,22 +106,82 @@
         <%#= f.hidden_field :job_id, :value => params[:user][:job_id] %>
         <%# fail %>
       <%# end %>
+    </tbody>
+    </table>
 
-      <%= f.submit "検索する", class: "btn btn--pt5 w-200px " %>
-  <% end %>
+    <div class="content__search-box__action">
+      <%= f.submit "検索", class: "btn btn-info w-160px" %>
+     <% end %>
+    </div>
+
+    <div class="clear pl_20 pr_20">
+    <p class="f_left">
+      <span class="txt_size_18 rj_typo_color-c"><%= User.all.count %></span>
+
+      <span class="rj_typo_color-f">件中
+        <span class="translation_missing" title="translation missing: ja.1件〜20件表示しています。">
+        <%= @users.count %>件表示しています
+        </span>
+        </span>
+    </p>
+   </div>
 
 
+   <table class="table table-set--pt3 table--thd-pt1 txt_size_12 w-block">
+  <colgroup>
+    
+    <col style="width:140px;">
+    <col style="width:300px;">
+    <col style="width:300px;">
+    <col style="width:140px; text-align: right">
+  </colgroup>
 
-  <% @users.each do |user| %>
-	<ul>
-	  <li>
+ 
+  <tbody>
+    <tr>
+      <th>都道府県</th>
+      <th>市区町村</th>
+      <th>希望職種</th>
+      <th>アクション</th>
+    </tr>
 
-	  	<%= user.prefecture.name %>
-	
-	  	<%= user.city %>
-	  
-	  	<%= user.job_types.map{|job_type|job_type.name}.join(",") %>
-	  </li>
+     <% @users.each do |user| %>
+    <tr> 
+    <td>
+          <p class="mb_5 txt_size_14">
+            <strong>
+              <%= user.prefecture.name %>
+            </strong>
+          </p>
+    </td>
 
-	</ul>
+    <td>
+      <%= user.city %>
+    </td>
+
+    <td>
+      <%= user.job_types.map{|job_type|job_type.name}.join(",") %>
+    </td>
+
+    <td>
+       <% if Scout.where(user_id: user.id, client_id: current_client.id).present? %>
+        スカウト済み
+      <% else %>
+        <%= link_to "スカウト", scouts_create_scouts_path(client_id: current_client.id, user_id: user.id) %>
+      <% end %>
+    </td>
+    </tr>
 	<% end %>
+
+  </tbody>
+  </table>
+  </div>
+  </div>
+  </div>
+  </div>
+  
+  </div>
+  </div>
+  </div>
+  </body>
+  </html>

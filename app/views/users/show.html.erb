@@ -11,10 +11,10 @@
       <div class="mypage-side">
         <ul class="mypage-navi">
           <li><%= link_to "マイページ", "/users/#{current_user.id}" %></li>
-          <li><a href="/mypage/job_scouts" false="">スカウト管理※</a></li>
+          <li><%= link_to "スカウト管理", "/users/#{current_user.id}/scout_status" %></li>
           <li><%= link_to "キープ", "/users/#{current_user.id}/keep_status" %></li>
           <li><%= link_to "応募管理", "/users/#{current_user.id}/entry_status" %></li>
-          <li><%= link_to "メッセージ※", "/users/#{current_user.id}/keep_status" %></li>
+          <li><%= link_to "メッセージ", "/messages" %></li>
           <li><%= link_to "プロフィール", "/users/#{current_user.id}/edit" %></li>
       </ul>
     </div>
@@ -61,9 +61,9 @@
 
     <div class="cols_4">
       <div class="mypage-info">
-        <h3 class="mypage-info__title"><i class="icon-paper-plane"></i> スカウト※</h3>
+        <h3 class="mypage-info__title"><i class="icon-paper-plane"></i>スカウト</h3>
         <div class="mypage-info__circle">
-          <span class="mypage-info__circle__count">0<span class="txt_size_12">件</span></span>
+          <span class="mypage-info__circle__count"><%= current_user.scouts.count %><span class="txt_size_12">件</span></span>
             <p class="txt_size_10">
               <% if current_user.scouts.present? %>
                 スカウトが届いています。

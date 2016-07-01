@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    #@user = User.find(params[:id])
+    @user = User.find(params[:id])
   end
 
   def profile
@@ -35,6 +35,21 @@ class UsersController < ApplicationController
     end
   end
 
+  def entry_refuse
+    @entry = Entry.find(params[:entry_id])
+    @entry.selection_status_id = 5
+    @entry.save
+    redirect_to "/users/#{current_user.id}/entry_status"
+  end
+
+  def entry_adoption
+    @entry = Entry.find(params[:entry_id])
+    @entry.selection_status_id = 3
+    @entry.save
+    redirect_to "/users/#{current_user.id}/entry_status"
+  end
+
+
   def index
   end
 
@@ -44,7 +59,26 @@ class UsersController < ApplicationController
   def entry_status
   end
 
-  private
+  def scout_status
+  end
+
+  def scout_accept
+    @scout = Scout.find(params[:scout_id])
+    @scout.status = "accept"
+    @scout.save
+    @entry = Entry.new(user_id: current_user.id, job_id: params[:job_id], selection_status_id: 1)
+    @entry.save
+    redirect_to "/users/#{current_user.id}/scout_status"
+  end
+
+  def scout_deny
+    @scout = Scout.find(params[:scout_id])
+    @scout.status = "deny"
+    @scout.save
+    redirect_to "/users/#{current_user.id}/scout_status"
+  end
+
+private
 
     def user_params
       params.require(:user).permit(:name, :name_kana, :mail, :password,

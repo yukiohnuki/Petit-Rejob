@@ -1,20 +1,83 @@
-<h1>メッセージ</h1>
+<div class="content content--mypage">
+    <div class="content-head">
+      <ul class="breadcrumb--pt1">
+        <li><a href="/">プチリジョブ</a></li><li>メッセージ
+        </li>
+      </ul>
+      <h2 class="heading1-pt1">メッセージ</h2>
+    </div>
 
-<%= form_for(@message, url: {controller: :messages, action: :create}, html: {method: "post"}) do |f| %>
-
-<%#= form_for(@user, url: {controller: :entries, action: :create}, html: {method: "post"}) do |f| %>
-
-  <div class = "field">
-   <%= f.label :メッセージ %>
-   <%= f.text_field :body %>
+    <div class="mypage-side">
+      <div class="mypage-side">
+        <ul class="mypage-navi">
+          <li><%= link_to "マイページ", "/users/#{current_user.id}" %></li>
+          <li><%= link_to "スカウト管理", "/users/#{current_user.id}/scout_status" %></li>
+          <li><%= link_to "キープ", "/users/#{current_user.id}/keep_status" %></li>
+          <li><%= link_to "応募管理", "/users/#{current_user.id}/entry_status" %></li>
+          <li><%= link_to "メッセージ", "/messages" %></li>
+          <li><%= link_to "プロフィール", "/users/#{current_user.id}/edit" %></li>
+      </ul>
+    </div>
   </div>
 
-  <div class ="actions">
-  <%= f.hidden_field :client_id, :value => params[:client_id] %>
-  <%= f.hidden_field :user_id, :value => params[:user_id] %>
-  <%= f.submit "submit" %>
+  <div class="mypage-main">
+      <h2 class="heading2-mypage">応募管理</h2>
 
+
+<div id="show_tab_type" data-show-tab=""></div>
+
+  <ul class="js-tab-nav js-tab-nav--pt2 txt_size_12">
+    <li><a class="active" href="/mypage/entries/600893/messages">メッセージ</a></li>
+  </ul>
+
+  <div class="js-tab-cont js-tab-cont--bd">
+    <div class="clear p_20">
+
+
+      <div class="chat-area mt_20">
+        <div class="chat-area__timelime">
+          
+  <div class="_timelime__message">
+
+    <div class="_timelime__message__img"><!-- 画像は仕様が決まり次第 -->
+      <div class="message__img__icon message__img__icon--usr"></div>
+    </div>
+
+    <div class="_timelime__message__body">
+      <p><ul>
+      <p class="_message__body__sender" data-sender="user"></p>
+    <% current_user.messages.where(client_id: params[:client_id]).each do |message| %>
+    <li>
+    <%= message.body %>
+    </li>
+    <% end %>
+  </ul></p>
+  </div>
+  </div>
+  </div>
+
+  
+  <div id="chat_area" class="chat-area__message">
+          <div class="_i-setting">
+
+            <div class="_i-setting_tab js-tab-cl2">
+              <a class="_i-setting__title active js_acMenu" id="user_message_title" href="javascript:void(0);">メッセージ</a>
+            </div>
+
+            <div class="js-tab-cl2--content">
+              <div>
+              <%= form_for(@message, url: {controller: :messages, action: :create}, html: {method: "post"}) do |f| %>
+
+  <div class="_i-setting__body">
+    
+      <%= f.text_area :body %>
+      <%= f.hidden_field :client_id, :value => params[:client_id] %>
+  <%= f.hidden_field :user_id, :value => params[:user_id] %>
+  <%= f.submit "送信",class:"btn" %>
+
+  </div>
   <% end %>
+</div>
 
   <div class="container">
       <% flash.each do |message_type, message| %>
@@ -23,12 +86,12 @@
       <%= yield %>
   </div>
 
-  
-  <h1>メッセージボックス</h1>
-  <ul>
-    <% current_user.messages.where(client_id: params[:client_id]).each do |message| %>
-    <li>
-    <%= message.body %>
-    </li>
-    <% end %>
-  </ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+

@@ -1,9 +1,130 @@
-<h1>案件一覧</h1>
+<!DOCTYPE html>
+<html>
+<head>
+ <link rel="stylesheet" media="all" href="https://client.relax-job.com/assets/client_frontend/application-9cb4b3c70c51f887f5ef49a196dca440.css">
+</head>
+<body>
 
-  <ul class="jobs">
+
+  <div class="cl__wapper">
+      <div class="cl__sidebar">
+        <ul class="sidebar-menu">
+
+
+        <li class="sidebar-menu__i-home">
+          <%= link_to "HOME", admin_top_path %>
+        </li>
+
+        <li class="sidebar-menu__i-application">
+          <%= link_to "応募一覧", job_entries_path %>
+        </li>
+
+        <li class="sidebar-menu__i-message">
+          <%= link_to "メッセージ", message_index_path %>
+        </li>
+
+        <li class="sidebar-menu__i-scouts">
+          <%= link_to "スカウト", new_scout_path(client_id: current_client.id, job_id: current_client.jobs.first.id) %>
+        </li>
+
+        <li class="sidebar-menu__i-jobs">
+          <%= link_to "求人管理", client_jobs_path %>
+        </li>
+
+        <li class="sidebar-menu__i-shop">
+          <%= link_to "店舗一覧", shop_index_path %>
+        </li>
+        </ul>
+      </div>
+
+      <div class="cl__content">
+    <h1 class="heading1-pt1">求人管理</h1>
+<div id="popDiv_id">
+  <div id="modal-content">
+  </div>
+</div>
+
+<div class="info-box info-box--pt5 txt_size_12 mb_10">
+  <p>【注意】</p>
+  <p>リジョブでは同店舗求人を2つ以上の掲載は出来ません。ただし「募集職種」又は「雇用形態」で掲載を分けることは可能です。</p>
+  <p>重複した内容でご申請いただいた場合は差戻しとなりますのでご了承ください。求人ページの発行をご希望の方は「申請フォーム」よりご依頼ください。</p>
+    <br>
+    
+</div>
+
+<div class="info-box info-box--pt5 mb_10 txt_size_12 mb_10">
+  <p>求人広告のご申請に関しまして、最大下記日数を頂戴する可能性がございます。</p>
+  <p><strong>新規：最大3営業日</strong></p>
+  <p><strong>変更：最大1営業日</strong></p>
+  <p>ご迷惑をおかけしまして誠に申し訳ございません。何卒ご了承のほどお願い申し上げます。</p>
+</div>
+
+<div class="tab-area">
+    <div class="t_right mb_10">
+    	<%= link_to "新規求人の掲載", new_job_path, class:"btn txt_size_12" %>
+    </div>
+
+    <ul class="tab-cl txt_size_13 mt_5">
+          <li>
+            <span class="active">
+              全て
+              <span class="txt_size_10"></span>
+            </span>
+          </li>
+    </ul>
+  </div>
+
+  <table class="table table-set--pt3 table--thd-pt1 txt_size_12 mb_10">
+  <colgroup>
+    <col style="width:100px;">
+    <col style="width:300px;">
+    <col style="width:140px;">
+    <col style="width:140px;">
+    <col style="width:80px;">
+    
+  </colgroup>
+
+
+  <tbody>
+  <tr>
+    <th>求人タイトル</th>
+    <th>勤務地</th>
+    <th>店舗</th>
+    <th>職種</th>
+    <th>アクション</th>
+  </tr>
+
   <% current_client.jobs.each do |job|  %>
-    <li>
-      <%= link_to job.title, "/client_jobs/#{job.id}/edit" %>
-      <%= job.shop.name %>
-    </li>
-  <% end %>
+  <tr>
+      <td>
+        <strong class="txt_size_11">
+          <%= link_to job.title, "/client_jobs/#{job.id}/edit" %>
+        </strong>
+      </td>
+
+      <td>
+      	<%= job.prefecture.name %>
+      	<%= job.city %>
+      </td>
+
+      <td>
+      	<%= job.shop.name %>
+      </td>
+
+      <td>
+      	<%= job.job_types.map{|job_type|job_type.name}.join(",") %>
+      </td>
+
+      <td>
+        <%= link_to "編集", "/client_jobs/#{job.id}/edit", class:"btn btn--xxsmall mb_1" %>
+      </td>
+    </tr>
+   <% end %>
+  </tbody>
+</table>
+</div>
+</div>
+</body>
+</html>
+
+

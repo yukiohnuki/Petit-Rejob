@@ -54,7 +54,7 @@
       <% if user_logged_in? %>
         <li><%= link_to "キープ", "/users/#{current_user.id}/keep_status" %><i class="icon-attach"></i></li>
         <li><%= link_to "応募管理", "/users/#{current_user.id}/entry_status" %><i class="icon-paper-plane"></i></li>
-        <li><a rel="nofollow,leanModal" href=".memberRegistrationModal"><i class="icon-paper-plane"></i>スカウト管理※</a></li>
+        <li><%= link_to "スカウト管理", "/users/#{current_user.id}/scout_status" %></li>
         <li><%= link_to "マイページ", user_path(session[:user]) %><i class="icon-paper-plane"></i></li>
       <% end %>
       
@@ -76,59 +76,51 @@
       <div class="row row-mg footer--content">
         <div class="cols_6 f_left">
           <dl class="footer-nav">
-            <dt><a href="https://staging.relax-job.com/biyo">美容</a></dt>
+            <dt>美容</dt>
             <dd>
               <ul class="ul-inline ul-inline--col5 ul--p_tb2">
-                <li><a href="https://staging.relax-job.com/esthe">エステ</a></li>
-                <li><a href="https://staging.relax-job.com/nail">ネイル</a></li>
-                <li><a href="https://staging.relax-job.com/eyelist">アイリスト</a></li>
-                <li><a href="https://staging.relax-job.com/biyoshi">美容師</a></li>
-                <li><a href="https://staging.relax-job.com/biyobuin">美容部員</a></li>
+                <li><a href="http://localhost:3000/jobs/search?utf8=%E2%9C%93&job%5Bprefecture_id%5D=&job%5Bjob_types_id%5D%5B%5D=1&commit=%E6%A4%9C%E7%B4%A2%E3%81%99%E3%82%8B">エステ</a></li>
+                <li><a href="http://localhost:3000/jobs/search?utf8=%E2%9C%93&job%5Bprefecture_id%5D=&job%5Bjob_types_id%5D%5B%5D=2&commit=%E6%A4%9C%E7%B4%A2%E3%81%99%E3%82%8B">ネイル</a></li>
+                <li><a href="http://localhost:3000/jobs/search?utf8=%E2%9C%93&job%5Bprefecture_id%5D=&job%5Bjob_types_id%5D%5B%5D=3&commit=%E6%A4%9C%E7%B4%A2%E3%81%99%E3%82%8B">アイリスト</a></li>
+                <li><a href="http://localhost:3000/jobs/search?utf8=%E2%9C%93&job%5Bprefecture_id%5D=&job%5Bjob_types_id%5D%5B%5D=4&commit=%E6%A4%9C%E7%B4%A2%E3%81%99%E3%82%8B">美容師</a></li>
               </ul>
             </dd>
 
-            <dt><a href="https://staging.relax-job.com/relaxation"> リラクゼーション</a></dt>
+            <dt>リラクゼーション</dt>
             <dd>
               <ul class="ul-inline ul-inline--col5 ul-inline--p_tb5">
-                <li><a href="https://staging.relax-job.com/therapist">セラピスト</a></li>
-                <li><a href="https://staging.relax-job.com/massage">マッサージ</a></li>
-                <li><a href="https://staging.relax-job.com/reflexology">リフレ</a></li>
-                <li><a href="https://staging.relax-job.com/aroma">アロマ</a></li>
-                <li><a href="https://staging.relax-job.com/seitai">整体師</a></li>
-                <li><a href="https://staging.relax-job.com/chiropractic">カイロ</a></li>
+                <li><a href="http://localhost:3000/jobs/search?utf8=%E2%9C%93&job%5Bprefecture_id%5D=&job%5Bjob_types_id%5D%5B%5D=6&commit=%E6%A4%9C%E7%B4%A2%E3%81%99%E3%82%8B">セラピスト</a></li>
               </ul>
             </dd>
           </dl>
           <div class="row row-mg clear">
             <div class="cols_6">
               <dl class="footer-nav">
-                <dt><a href="https://staging.relax-job.com/chiryo">治療</a></dt>
+                <dt>治療</dt>
                 <dd>
                   <ul class="ul-inline ul-inline--col3 ul-inline--p_tb5">
-                    <li><a href="https://staging.relax-job.com/jusei">柔道整復師</a></li>
-                    <li><a href="https://staging.relax-job.com/shinkyu">鍼灸師</a></li>
-                    <li><a href="https://staging.relax-job.com/massageshi">マッサージ師</a></li>
+                    <li><a href="http://localhost:3000/jobs/search?utf8=%E2%9C%93&job%5Bprefecture_id%5D=&job%5Bjob_types_id%5D%5B%5D=5&commit=%E6%A4%9C%E7%B4%A2%E3%81%99%E3%82%8B">柔道整復師</a></li>
+                    
                   </ul>
                 </dd>
               </dl>
             </div>
             <div class="cols_6">
               <dl class="footer-nav">
-                <dt><a href="https://staging.relax-job.com/sports">スポーツ・フィットネス</a></dt>
+                <dt>スポーツ・フィットネス</dt>
                 <dd>
                   <ul class="ul-inline ul-inline--col3 ul-inline--p_tb5">
-                    <li><a href="https://staging.relax-job.com/yoga">ヨガ</a></li>
-                    <li><a href="https://staging.relax-job.com/fitness">フィットネス</a></li>
+                    <li><a href="http://localhost:3000/jobs/search?utf8=%E2%9C%93&job%5Bprefecture_id%5D=&job%5Bjob_types_id%5D%5B%5D=7&commit=%E6%A4%9C%E7%B4%A2%E3%81%99%E3%82%8B">ヨガ</a></li>
                   </ul>
                 </dd>
               </dl>
             </div>
           </div>
           <dl class="footer-nav">
-            <dt><a href="https://staging.relax-job.com/kaigo">リジョブ 介護</a></dt>
+            <dt><a href=https://relax-job.com/kaigo>リジョブ 介護</a></dt>
             <dd>
               <ul class="ul-inline ul-inline--col5 ul-inline--p_tb5">
-                <li><a href="https://staging.relax-job.com/kaigo">介護</a></li>
+                <li><a href=https://relax-job.com/kaigo>介護</a></li>
               </ul>
             </dd>
           </dl>
@@ -139,22 +131,14 @@
             <dt>企業様メニュー</dt>
             <dd>
               <ul class="ul-list-none ul--p_tb2">
-                <li><a href="https://client-staging.relax-job.com/" target="_blank">企業様ログイン</a></li>
-                <li><a href="/lp/new_inquiry" target="_blank">求人掲載について</a></li>
-                <li><a href="/info/corporate_contact" target="_blank">企業様お問い合わせ</a></li>
+                <li><a href="http://localhost:3000/client_sessions/new" target="_blank">企業様ログイン</a></li>
               </ul>
             </dd>
             <dt>リジョブについて</dt>
             <dd>
               <ul class="ul-list-none ul--p_tb2">
-                <li><a href="/info/terms">利用規約</a></li>
-                <li><a href="/info/user_contact">求職者様お問い合わせ</a></li>
-                <li><a href="/lp/user_rewards">お祝い金とは</a></li>
-                <li><a href="/info/faq">よくあるご質問</a></li>
-                <li><a href="/info/privacypolicy">プライバシーポリシー</a></li>
-                <li><a href="/info/law">免責事項･特定商取引</a></li>
+                <li><a href=https://relax-job.com/info/terms>利用規約</a></li>
                 <li><a href="https://rejob.co.jp/company?utm_medium=rejob&amp;utm_source=relax-job.com" target="_blank">会社概要</a></li>
-                <li><a href="/info/sitemap">サイトマップ</a></li>
               </ul>
             </dd>
           </dl>

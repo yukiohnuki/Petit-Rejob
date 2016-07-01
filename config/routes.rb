@@ -7,8 +7,33 @@ Rails.application.routes.draw do
   delete 'admin_user_logout' ,to:'sessions#delete'
  
   resources:clients
+    
+  get 'message_new', to:'clients#message_new'
+  post 'message_create', to:'clients#message_create'
+  get 'message_index', to:'clients#message_index'
+    
+  
+
   resources:client_sessions
-  resources:users
+  resources:users do
+    collection do
+      get 'entry_refuse', to:'users#entry_refuse'
+    end
+
+    collection do
+      get 'entry_adoption', to:'users#entry_adoption'
+    end
+
+    collection do
+      get 'scout_accept', to:'users#scout_accept'
+    end
+
+    collection do
+      get 'scout_deny', to:'users#scout_deny'
+    end
+
+  end
+
   resources:user_sessions
   resources:shops
 
@@ -26,6 +51,10 @@ Rails.application.routes.draw do
     collection do
       get 'user_search', to:'scouts#user_search'
     end
+
+    collection do
+      get 'scouts_create', to:'scouts#scouts_create'
+    end
   end
 
   resources:client_jobs, only:[:index, :edit]
@@ -41,7 +70,17 @@ Rails.application.routes.draw do
 
   
 
-  resources:job_entries, only:[:index]
+  resources:job_entries do
+    collection do
+      post 'selection_status_update', to:'job_entries#selection_status_update'
+    end
+
+    collection do
+      post 'search', to:'job_entries#search'
+    end
+
+  end
+
   resources:messages
 
   get '/users/:id/keep_status', to:'users#keep_status'
@@ -61,6 +100,8 @@ Rails.application.routes.draw do
   get 'shop_index', to:'clients#shop_index'
   get 'shop_edit/:id', to:'clients#shop_edit'
   patch 'shop_edit/:id', to:'clients#shop_edit_update'
+
+  get '/users/:id/scout_status', to:'users#scout_status'
 
 #  post '/jobs/search', to:'jobs#search'
   # The priority is based upon order of creation: first created -> highest priority.

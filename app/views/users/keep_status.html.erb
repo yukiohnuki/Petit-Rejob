@@ -11,10 +11,10 @@
       <div class="mypage-side">
         <ul class="mypage-navi">
           <li><%= link_to "マイページ", "/users/#{current_user.id}" %></li>
-      	  <li><a href="/mypage/job_scouts" false="">スカウト管理※</a></li>
+      	  <li><%= link_to "スカウト管理", "/users/#{current_user.id}/scout_status" %></li>
       	  <li><%= link_to "キープ", "/users/#{current_user.id}/keep_status" %></li>
       	  <li><%= link_to "応募管理", "/users/#{current_user.id}/entry_status" %></li>
-      	  <li><%= link_to "メッセージ※", "/users/#{current_user.id}/keep_status" %></li>
+      	  <li><%= link_to "メッセージ", "/messages" %></li>
       	  <li><%= link_to "プロフィール", "/users/#{current_user.id}/edit" %></li>
  	    </ul>
 	  </div>
@@ -40,7 +40,7 @@
         <div class="mypage-box__content txt_size_12">
           <table class="table table-set--pt5 table--thd-pt1">
             <colgroup>
-              <col style="width:40px">
+              <col style="width:300px">
               <col style="width:auto">
               <col style="width:140px;">
             </colgroup>
@@ -78,7 +78,7 @@
                   </td>
 
                   <td>
-                    <%= keeps.job.id %>
+                    <%= keeps.job.job_types.map{|job_type|job_type.name}.join(",") %>
                   </td>
 
                   <td>

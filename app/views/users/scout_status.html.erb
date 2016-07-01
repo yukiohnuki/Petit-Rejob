@@ -1,0 +1,106 @@
+  <div class="content content--mypage">
+    <div class="content-head">
+      <ul class="breadcrumb--pt1">
+        <li><a href="/">プチリジョブ</a></li><li>スカウト
+        </li>
+      </ul>
+      <h2 class="heading1-pt1">スカウト</h2>
+    </div>
+
+    <div class="mypage-side">
+      <div class="mypage-side">
+        <ul class="mypage-navi">
+          <li><%= link_to "マイページ", "/users/#{current_user.id}" %></li>
+          <li><%= link_to "スカウト管理", "/users/#{current_user.id}/scout_status" %></li>
+          <li><%= link_to "キープ", "/users/#{current_user.id}/keep_status" %></li>
+          <li><%= link_to "応募管理", "/users/#{current_user.id}/entry_status" %></li>
+          <li><%= link_to "メッセージ", "/messages" %></li>
+          <li><%= link_to "プロフィール", "/users/#{current_user.id}/edit" %></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="mypage-main">
+      <h2 class="heading2-mypage">スカウト管理</h2>
+<div class="info-box info-box--pt3 mb_15">
+  <h3 class="info-box--pt3__title">スカウト管理について</h3>
+  <p class="txt_size_12">お店からのスカウト状況を表示しています。受諾するとお店へ応募という形になります。
+    <br>【返答期間】スカウト日時から一週間　※返答期間が終了した場合、自動的に辞退となります。</p>
+    <dl class="list-dl-pt3 list-dl-pt3--dt5em mt_15 txt_size_12">
+      <dt><strong>受諾…</strong></dt>
+      <dd>選考希望する場合</dd>
+      <dt><strong>辞退…</strong></dt>
+      <dd>選考希望しない場合</dd>
+    </dl>
+</div>
+
+<section>
+  <div class="mypage-box">
+    
+    <div class="mypage-box__content">
+        <table class="table table-set--pt5 table--thd-pt1 txt_size_12">
+          <colgroup>
+            <col style="width:300px;">
+            <col style="width:200px;">
+            <col style="width:120px;">
+            <col style="width:auto;">
+          </colgroup>
+          <tbody>
+
+          
+
+          <tr>
+              <th colspan="2">企業名・案件名</th>
+              <th>職種</th>
+              <th>勤務地</th>
+              <th>報告</th>
+           </tr>
+
+          
+
+           <% current_user.scouts.each do |scout|  %>
+          <tr>
+            <td>
+              <div class="job-data-min">
+        	<a class="f_left" href="/job/1008109">
+            <img src="https://s3-ap-northeast-1.amazonaws.com/rejob-v2-images-production/files/client_shop_image/ToKXX-/xoV_ok/mMz-c7/Ni0R7H/LTY/mini_thumb.jpg" alt="">
+			</a>
+        	
+        	<div class="job-data-min__info">
+          	<span class="job-cmp">［企業名］<%= scout.client.name %></span>
+          	<p class="job-title">
+            	<%= link_to scout.client.jobs.first.title %>
+          	</p>
+            
+        </div>
+      </div>
+    </td>
+
+    <td>
+    	<%= scout.client.jobs.first.job_types.map{|job_type|job_type.name}.join(",") %>
+    </td>
+
+    <td>
+    	<%= scout.client.jobs.first.prefecture.name %>
+    </td>
+
+    <td>
+    	<% if scout.status == "new_arrival" %>
+        <%= link_to "受諾", scout_accept_users_path(scout_id: scout.id, job_id: scout.client.jobs.first.id, status: "accept"), class:"btn btn--pt3 btn--xxsmall w-block mb_1" %>
+        <%= link_to "拒否", scout_deny_users_path(scout_id: scout.id, status: "deny") %>
+    	<% elsif scout.status == "accept" %>
+    	受諾済み
+    	<% else %>
+    	拒否済み
+    	<% end %>
+    </td>
+    </tr>
+
+  <% end %>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</div>
+</div>

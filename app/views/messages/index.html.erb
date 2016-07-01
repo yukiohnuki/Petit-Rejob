@@ -1,0 +1,64 @@
+ <div class="content content--mypage">
+    <div class="content-head">
+      <ul class="breadcrumb--pt1">
+        <li><a href="/">プチリジョブ</a></li><li>メッセージ
+        </li>
+      </ul>
+      <h2 class="heading1-pt1">メッセージ</h2>
+    </div>
+
+    <div class="mypage-side">
+      <div class="mypage-side">
+        <ul class="mypage-navi">
+          <li><%= link_to "マイページ", "/users/#{current_user.id}" %></li>
+          <li><%= link_to "スカウト管理", "/users/#{current_user.id}/scout_status" %></li>
+          <li><%= link_to "キープ", "/users/#{current_user.id}/keep_status" %></li>
+          <li><%= link_to "応募管理", "/users/#{current_user.id}/entry_status" %></li>
+          <li><%= link_to "メッセージ", "/messages" %></li>
+          <li><%= link_to "プロフィール", "/users/#{current_user.id}/edit" %></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="mypage-main">
+      <h1 class="heading2-mypage">メッセージ一覧</h1>
+
+<div class="pagination--pt1 f_right">
+  
+</div>
+
+<table class="table table-set--pt5 table--thd-pt3 txt_size_12">
+  <colgroup>
+    <col style="width: 300px">
+    <col style="width: auto;">
+    <col style="width: 100px">
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>応募先情報</th>
+      <th>本文</th>
+      <th>アクション</th>
+    </tr>
+
+<% current_user.messages.each do |message| %>
+	<tr>
+    
+      <td>
+        <div>[企業名]<%= message.client.name %></div>
+        <span>[案件名]<%= message.client.jobs.first.title %></span>
+      </td>
+
+      <td>
+      	<%= message.body %>
+      </td>
+
+      <td>
+        <%= link_to "メッセージ詳細", new_message_path(client_id: message.client.id,user_id: current_user.id), class:"btn btn--xxsmall w-block" %>
+      </td>
+    </tr>
+
+<% end %>
+</tbody>
+</table>
+</div>
+</div>

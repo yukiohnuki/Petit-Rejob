@@ -1,7 +1,56 @@
-<h1>案件作成フォーム</h1>
+ <!DOCTYPE html>
+<html>
+<head>
+ <link rel="stylesheet" media="all" href="https://client.relax-job.com/assets/client_frontend/application-9cb4b3c70c51f887f5ef49a196dca440.css">
+</head>
+<body>
+
+
+  <div class="cl__wapper">
+      <div class="cl__sidebar">
+        <ul class="sidebar-menu">
+
+
+        <li class="sidebar-menu__i-home">
+          <%= link_to "HOME", admin_top_path %>
+        </li>
+
+        <li class="sidebar-menu__i-application">
+          <%= link_to "応募一覧", job_entries_path %>
+        </li>
+
+        <li class="sidebar-menu__i-message">
+          <a href="/clients/4945/job_entries/messages">
+            メッセージ一覧※
+          </a>
+        </li>
+
+        <li class="sidebar-menu__i-scouts">
+          <%= link_to "スカウト", new_scout_path(client_id: current_client.id, job_id: current_client.jobs.first.id) %>
+        </li>
+
+        <li class="sidebar-menu__i-jobs">
+          <%= link_to "求人管理", client_jobs_path %>
+        </li>
+
+        <li class="sidebar-menu__i-shop">
+          <%= link_to "店舗一覧", shop_index_path %>
+        </li>
+        </ul>
+      </div>
+
+      <div class="cl__content">
+    <h1 class="heading1-pt1">求人管理 - 新規追加</h1>
+
+<div class="info-box info-box--pt5 mb_10 txt_size_12 mb_10">
+  <p>求人広告のご申請に関しまして、最大下記日数を頂戴する可能性がございます。</p>
+  <p><strong>新規：最大3営業日</strong></p>
+  <p><strong>変更：最大1営業日</strong></p>
+  <p>ご迷惑をおかけしまして誠に申し訳ございません。何卒ご了承のほどお願い申し上げます。</p>
+</div>
 
 <div>
-貴社の店舗一覧
+店舗一覧
 <ul>
   <li>
     <% current_client.shops.each do |shop| %>
@@ -11,56 +60,124 @@
   </li>
 </ul>
 </div>
-<br></br>
 
-<%= form_for(@job, html: {multipart: true}) do |f| %>
+<div id="jobs_edit_flag" data-edit-flag="false"></div>
+<div id="preview_url" data-preview-url="https://staging.relax-job.com/job/preview"></div>
 
-  <div class="field">
-    <%= f.label :店舗ID %>
-    <%= f.text_field :shop_id %>
-  </div>
+  <div class="tab-cl--content">
 
-  <span class="picture">
-    <%= f.label :案件詳細用の写真 %>
-    <%= f.file_field :top_photo %>
-  </span>
-
-  <span class="picture">
-    <%= f.label :検索一覧用の写真 %>
-    <%= f.file_field :search_list_photo %>
-  </span>
+<div id="tab_basic_shop" style="display: block;">
+      <h2 class="heading2-pt5">店舗基本情報</h2>
+      <div class="p_20">
+  <div id="client_shops_address_data" data-shops-address="{&quot;514775&quot;:&quot;【ボーテサロン　ル・シェルシェ銀座店】東京都 中央区 銀座5-9-1　銀座コティビル6F &quot;}"></div><div id="client_shops_job_features_data" data-shops-feature="{&quot;514775&quot;:[]}"></div><table class="table table--thd-pt1 table-set--pt1 table-set--pt1--bd w-block">
+    <colgroup>
+        <col style="width:200px;">
+        <col style="">
+    </colgroup>
 
 
-  <div class="field">
-    <%= f.label :案件名 %>
-    <%= f.text_field :title %>
-  </div>
+    <%= form_for(@job, html: {multipart: true}) do |f| %>
 
-  <div class="field">
-    <%= f.label :都道府県 %>
-    <%= f.select :prefecture_id, Prefecture.all.map { |p| [p.name, p.id] } %>
-  </div>
+    <tbody>
 
-  <div class="field">
-    <%= f.label :市区町村 %>
-    <%= f.text_field :city %>
-  </div>
+    <tr>
+        <th>
+          <%= f.label :店舗ID %>
+          <span class="label label--pt3 label--small">必須</span>
+        </th>
+        <td>
+          <%= f.text_field :shop_id %>
+        </td>
+    </tr>
 
-  <div class="field">
-    <%= f.label :給与 %>
-    <%= f.text_field :salary %>
-  </div>
+    <tr>
+        <th>
+          <%= f.label :案件詳細用の写真 %>
+          <span class="label label--pt3 label--small">必須</span>
+        </th>
+        <td>
+          <%= f.file_field :top_photo %>
+        </td>
+    </tr>
 
-  <div class="field">
-    <%= f.label :メッセージ %>
-    <%= f.text_field :message %>
-  </div>
+    <tr>
+        <th>
+          <%= f.label :検索一覧用の写真 %>
+          <span class="label label--pt3 label--small">必須</span>
+        </th>
+        <td>
+           <%= f.file_field :search_list_photo %>
+        </td>
+    </tr>
 
-  <div class ="actions">
-  <%= f.hidden_field :client_id, :value => params[:client_id] %>
-  <%= f.submit "submit" %>
+    <tr>
+        <th>
+          <%= f.label :案件名 %>
+          <span class="label label--pt3 label--small">必須</span>
+        </th>
+        <td>
+           <%= f.text_field :title %>
+        </td>
+    </tr>
 
-<% end %>
+    <tr>
+        <th>
+          <%= f.label :都道府県 %>
+          <span class="label label--pt3 label--small">必須</span>
+        </th>
+        <td>
+           <%= f.select :prefecture_id, Prefecture.all.map { |p| [p.name, p.id] } %>
+        </td>
+    </tr>
+
+    <tr>
+        <th>
+          <%= f.label :市区町村 %>
+          <span class="label label--pt3 label--small">必須</span>
+        </th>
+        <td>
+           <%= f.text_field :city %>
+        </td>
+    </tr>
+
+    <tr>
+        <th>
+          <%= f.label :給与 %>
+          <span class="label label--pt3 label--small">必須</span>
+        </th>
+        <td>
+           <%= f.text_field :salary %>
+        </td>
+    </tr>
+
+    <tr>
+        <th>
+          <%= f.label :メッセージ %>
+          <span class="label label--pt3 label--small">必須</span>
+        </th>
+        <td>
+           <%= f.text_field :message %>
+        </td>
+    </tr>
+    
+
+    </tbody>
+   <%= f.hidden_field :client_id, :value => params[:client_id] %>
+    <%= f.submit "保存する", class:"btn btn--pt3 txt_size_14 save_with_apply" %>
+    <% end %>    
+    
+   </table>
+   </div>
+
+     <div class="p_20">
+   
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </body>
+    </html>
 
 
 

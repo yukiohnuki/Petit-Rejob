@@ -13,9 +13,7 @@ class ClientsController < ApplicationController
     end
   end
 
-  def show
-    @client = Client.find(params[:id])
-  end
+  
 
   def admin_top
   end
@@ -44,6 +42,27 @@ class ClientsController < ApplicationController
     end
   end
 
+
+  def message_new
+    @message = Message.new
+  end
+
+  def message_create
+    if Message.create(message_params)
+      redirect_to "/message_new"
+      flash[:success] = "メッセージを送りました"
+    else
+      redirect_to '/'
+    end
+  end
+
+  def show
+    @client = Client.find(params[:id])
+  end
+
+  def message_index
+  end
+
   private
 
     def client_params
@@ -67,6 +86,10 @@ class ClientsController < ApplicationController
       if client_logged_in?
          Client.find(session[:client])
       end
+    end
+
+    def message_params
+        params.require(:message).permit(:body, :client_id, :user_id)
     end
 
 end

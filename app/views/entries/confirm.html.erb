@@ -41,7 +41,7 @@
       <p><b>まだ応募は完了していません。入力内容を確認後、「応募を完了する」ボタンをクリックしてください。</b></p>
   </div>
 
-  <%= form_for(@user, url: {controller: :entries, action: :create}, html: {method: "post"}) do |f| %>
+  <%= form_for(@entry, url: {controller: :entries, action: :create}, html: {method: "post"}) do |f| %>
     
   <h2 class="heading2-pt6 mt_30">基本情報</h2>
   <section class="box-pt2">
@@ -54,7 +54,7 @@
           <th>名前
           </th>
           <td>
-            <%= @user.name %>
+            <%= @entry.name %>
     		<%= f.hidden_field :name %>
           </td>
         </tr>
@@ -63,7 +63,7 @@
           <th>ふりがな
           </th>
           <td>
-            <%= @user.name_kana %>
+            <%= @entry.name_kana %>
     		<%= f.hidden_field :name_kana %>
           </td>
         </tr>
@@ -72,7 +72,7 @@
           <th>メールアドレス
           </th>
           <td>
-            <%= @user.mail %>
+            <%= @entry.mail %>
     		<%= f.hidden_field :mail %>
           </td>
         </tr>
@@ -81,7 +81,7 @@
           <th>都道府県
           </th>
           <td>
-            <%= @user.prefecture.name %>
+            <%= @entry.prefecture.name %>
     		<%= f.hidden_field :prefecture_id %>
           </td>
         </tr>
@@ -90,8 +90,17 @@
           <th>市区町村
           </th>
           <td>
-            <%= @user.city %>
+            <%= @entry.city %>
     		<%= f.hidden_field :city %>
+          </td>
+        </tr>
+
+        <tr>
+          <th>希望職種
+          </th>
+          <td>
+            <%= @entry.job_types.map {|job_type| job_type.name} %>
+            <%= f.hidden_field :job_type_ids, value: params[:entry][:job_type_ids] %>
           </td>
         </tr>
       </tbody>
@@ -101,7 +110,9 @@
   <section class="box-pt3 p_20 t_center txt_size_14 mt_30">
 
   	<%= link_to '戻る', :back, class: "btn btn--large w-280px" %>
-  	<%= f.hidden_field :job_id, :value => params[:user][:job_id] %>
+  	<%= f.hidden_field :job_id, :value => params[:entry][:job_id] %>
+    <%= f.hidden_field :user_id, :value => session[:user] %>
+    <%= f.hidden_field :selection_status_id, :value => 1 %>
     <%= f.submit '応募する', class: "btn btn--pt3 btn--large w-280px" %>
   </section>
 <% end %>
