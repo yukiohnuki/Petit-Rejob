@@ -74,8 +74,7 @@
         <th><%= f.label :都道府県 %><span class="label label--pt3 label--small">必須</span>
         </th>
         <td>
-          <%= f.text_field :prefecture_id %>
-        </td>
+          <%= f.select :prefecture_id, Prefecture.all.map { |p| [p.name, p.id] } %>
       </tr>
 
       <tr>

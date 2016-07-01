@@ -30,7 +30,6 @@ class EntriesController < ApplicationController
   def create
     @entry = Entry.new(session[:entry])
     session[:entry] = nil
-    @job_types_entries = JobTypesEntry.where(job_type_id: params[:entry][:job_types])
       if params[:back]
        render :new
       elsif @entry.save
